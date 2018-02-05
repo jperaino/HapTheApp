@@ -8,6 +8,8 @@
 
 import UIKit
 import MapKit
+import Firebase
+import FirebaseAuthUI
 
 // MARK: Protocols
 
@@ -17,7 +19,7 @@ protocol HandleMapSearch {
 
 
 
-class placePickerViewController: UIViewController {
+class placePickerViewController: UIViewController, UINavigationControllerDelegate {
     
     // MARK: Properties
     let locationManager = CLLocationManager()
@@ -28,6 +30,17 @@ class placePickerViewController: UIViewController {
     
     var selectedPin: MKPlacemark? = nil
     
+    var ref: DatabaseReference!
+    var places: [DataSnapshot]! = []
+    var storageRef: StorageReference!
+    var keyboardOnScreen = false
+    fileprivate var _refHandle: DatabaseHandle!
+    fileprivate var _authHandle: AuthStateDidChangeListenerHandle!
+    var user: User?
+    var displayName = "Anonymous"
+    
+    
+    
     
     
     
@@ -35,6 +48,9 @@ class placePickerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configureAuth()
+        
 
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -64,6 +80,60 @@ class placePickerViewController: UIViewController {
         mapView.mapType = .mutedStandard
     }
 
+    // MARK: Config
+    
+    func configureAuth() {
+        // listen for changes in the authorization state
+        _authHandle = Auth.auth().addStateDidChangeListener({ (auth: Auth, user: User?) in
+            //refresh data
+            self.places.removeAll(keepingCapacity: false)
+            // TODO : Reload data
+            
+            // Check if there is a current user
+            if let activeUser = user {
+                if self.user != activeUser {
+                    self.user = activeUser
+                    self.signedInStatus(isSignedIn: true)
+                    let name = user!.email!.components(separatedBy: "@")[0]
+                    self.displayName = name
+                }
+            } else {
+                // user must sign in
+                self.signedInStatus(isSignedIn: false)
+                self.loginSession()
+            }
+        })
+    }
+    
+    func loginSession() {
+        let authViewController = FUIAuth.defaultAuthUI()!.authViewController()
+        present(authViewController, animated: true, completion: nil)
+    }
+    
+    // MARK: Sign In and Out
+    
+    func signedInStatus(isSignedIn: Bool) {
+        
+        mapView.isHidden = !isSignedIn
+    
+        
+        if (isSignedIn) {
+            
+            // TODO: remove background blur
+            configureDatabase()
+        }
+    }
+    
+    
+    func configureDatabase() {
+        ref = Database.database().reference()
+        _refHandle = ref.child("places").observe(.childAdded) {(snapshot: DataSnapshot) in
+//            self.messages.append(snapshot)
+//            self.messagesTable.insertRows(at: [IndexPath(row: self.messages.count - 1, section: 0)], with: .automatic)
+//            self.scrollToBottomMessage()
+        }
+    }
+    
     // MARK: Methods
     
     @objc func getDirections() {

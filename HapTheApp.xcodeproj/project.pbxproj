@@ -14,6 +14,7 @@
 		53BFA19820268EF5000C416F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53BFA19720268EF5000C416F /* Assets.xcassets */; };
 		53BFA19B20268EF5000C416F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53BFA19920268EF5000C416F /* LaunchScreen.storyboard */; };
 		53E843BD20269C9400B86495 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53E843BC20269C9400B86495 /* GoogleService-Info.plist */; };
+		53ECD1B52028AFBA006BEDF0 /* placePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53ECD1B42028AFBA006BEDF0 /* placePickerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		53BFA19A20268EF5000C416F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		53BFA19C20268EF5000C416F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		53E843BC20269C9400B86495 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		53ECD1B42028AFBA006BEDF0 /* placePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = placePickerViewController.swift; sourceTree = "<group>"; };
 		9F9716DF14B4569A870FE0FF /* Pods-HapTheApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HapTheApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HapTheApp/Pods-HapTheApp.debug.xcconfig"; sourceTree = "<group>"; };
 		B94D96B6330703215CDD6EF5 /* Pods_HapTheApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HapTheApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -83,6 +85,7 @@
 				53BFA19020268EF5000C416F /* AppDelegate.swift */,
 				53BFA19220268EF5000C416F /* ViewController.swift */,
 				53BFA19420268EF5000C416F /* Main.storyboard */,
+				53ECD1B42028AFBA006BEDF0 /* placePickerViewController.swift */,
 				53BFA19720268EF5000C416F /* Assets.xcassets */,
 				53BFA19920268EF5000C416F /* LaunchScreen.storyboard */,
 				53BFA19C20268EF5000C416F /* Info.plist */,
@@ -271,6 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				53BFA19320268EF5000C416F /* ViewController.swift in Sources */,
+				53ECD1B52028AFBA006BEDF0 /* placePickerViewController.swift in Sources */,
 				53BFA19120268EF5000C416F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

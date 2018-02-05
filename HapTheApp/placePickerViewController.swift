@@ -17,8 +17,6 @@ protocol HandleMapSearch {
     func dropPinZoomIn(placemark:MKPlacemark)
 }
 
-
-
 class placePickerViewController: UIViewController, UINavigationControllerDelegate {
     
     // MARK: Properties
@@ -27,7 +25,6 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
     @IBOutlet weak var mapView: MKMapView!
     
     var resultSearchController:UISearchController? = nil
-    
     var selectedPin: MKPlacemark? = nil
     
     var ref: DatabaseReference!
@@ -39,9 +36,7 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
     var user: User?
     var displayName = "Anonymous"
     
-    
-    
-    
+    var blurbTextField: UITextField?
     
     
     // MARK: Lifecycle
@@ -51,7 +46,6 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
         
         configureAuth()
         
-
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
@@ -74,9 +68,7 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
         definesPresentationContext = true
     
         locationSearchTable.mapView = mapView
-    
         locationSearchTable.handleMapSearchDelegate = self
-        
         mapView.mapType = .mutedStandard
     }
 
@@ -115,15 +107,11 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
     func signedInStatus(isSignedIn: Bool) {
         
         mapView.isHidden = !isSignedIn
-    
-        
         if (isSignedIn) {
-            
             // TODO: remove background blur
             configureDatabase()
         }
     }
-    
     
     func configureDatabase() {
         ref = Database.database().reference()
@@ -144,11 +132,60 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
         }
     }
     
-    @objc func savePlace() {
-        
-        // TODO
-        
+    @objc func didSendPlace() {
+        textFieldShouldReturn()
+        blurbTextField?.text = ""
     }
+    
+    func textFieldShouldReturn() -> Bool {
+        if !blurbTextField!.text!.isEmpty {
+            let data = [Constants.PlaceFields.blurb: blurbTextField!.text! as String]
+            sendPlace(data: data)
+            blurbTextField?.resignFirstResponder()
+        }
+        return true
+    }
+    
+    func sendPlace(data: [String:String]) {
+        var mdata = data
+        mdata[Constants.PlaceFields.placemark] = "placeholder 1"
+        mdata[Constants.PlaceFields.timestamp] = "placeholder 2"
+        mdata[Constants.PlaceFields.UID] = "placeholder 3"
+        ref.child("places").childByAutoId().setValue(mdata)
+    }
+    
+    
+    
+    
+    
+//    @objc func sendMessage() {
+//        print("here")
+//
+//        var mdata = data
+//        print(mdata)
+//        print(ref)
+//        mdata[Constants.PlaceFields.UID] = displayName
+//        ref.child("messages").childByAutoId().setValue(mdata)
+//    }
+//
+//
+//    @objc func didSendPlace() {
+//        print("willSendPlace")
+//        let _ = textFieldShouldReturn(blurbTextField!)
+//        blurbTextField!.text = ""
+//        print("didSendPlace")
+//    }
+//
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        print("textFieldShouldReturn")
+//        if !textField.text!.isEmpty {
+//            let data = [Constants.PlaceFields.comment: textField.text! as String]
+//            sendMessage(data: data)
+//            textField.resignFirstResponder()
+//        }
+//        return true
+//    }
+
 
 }
 
@@ -211,14 +248,15 @@ extension placePickerViewController: MKMapViewDelegate {
     
         // Add Button
         let button = UIButton(type: .contactAdd)
-        button.addTarget(self, action: #selector(placePickerViewController.getDirections), for: .touchUpInside) // TODO: SAVE TO FIREBASE WHEN BUTTON IS TAPPED
+        button.addTarget(self, action: #selector(placePickerViewController.didSendPlace), for: .touchUpInside) // TODO: SAVE TO FIREBASE WHEN BUTTON IS TAPPED
+
         button.isEnabled = true
         markerView?.leftCalloutAccessoryView = button
         
-        let textField = UITextField()
-        textField.placeholder = "Enter Description"
-        textField.textColor = UIColor.magenta
-        markerView?.detailCalloutAccessoryView = textField
+        blurbTextField = UITextField()
+        blurbTextField!.placeholder = "Enter Description"
+        blurbTextField!.textColor = UIColor.magenta
+        markerView?.detailCalloutAccessoryView = blurbTextField!
         
         
         return markerView

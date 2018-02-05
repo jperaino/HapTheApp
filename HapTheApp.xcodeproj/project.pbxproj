@@ -18,6 +18,7 @@
 		53ECD1B72028B5D6006BEDF0 /* locationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53ECD1B62028B5D6006BEDF0 /* locationSearchTable.swift */; };
 		53ECD1C12028E85B006BEDF0 /* mapCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53ECD1C02028E85B006BEDF0 /* mapCalloutView.xib */; };
 		53ECD1C32028E87A006BEDF0 /* mapCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53ECD1C22028E87A006BEDF0 /* mapCalloutView.swift */; };
+		53ECD1C520290827006BEDF0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53ECD1C420290827006BEDF0 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		53ECD1B62028B5D6006BEDF0 /* locationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = locationSearchTable.swift; sourceTree = "<group>"; };
 		53ECD1C02028E85B006BEDF0 /* mapCalloutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = mapCalloutView.xib; sourceTree = "<group>"; };
 		53ECD1C22028E87A006BEDF0 /* mapCalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapCalloutView.swift; sourceTree = "<group>"; };
+		53ECD1C420290827006BEDF0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9F9716DF14B4569A870FE0FF /* Pods-HapTheApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HapTheApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HapTheApp/Pods-HapTheApp.debug.xcconfig"; sourceTree = "<group>"; };
 		B94D96B6330703215CDD6EF5 /* Pods_HapTheApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HapTheApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -92,6 +94,7 @@
 				53BFA19220268EF5000C416F /* ViewController.swift */,
 				53BFA19420268EF5000C416F /* Main.storyboard */,
 				53ECD1B42028AFBA006BEDF0 /* placePickerViewController.swift */,
+				53ECD1C420290827006BEDF0 /* Constants.swift */,
 				53ECD1B62028B5D6006BEDF0 /* locationSearchTable.swift */,
 				53ECD1C02028E85B006BEDF0 /* mapCalloutView.xib */,
 				53ECD1C22028E87A006BEDF0 /* mapCalloutView.swift */,
@@ -288,6 +291,7 @@
 				53ECD1B52028AFBA006BEDF0 /* placePickerViewController.swift in Sources */,
 				53BFA19120268EF5000C416F /* AppDelegate.swift in Sources */,
 				53ECD1B72028B5D6006BEDF0 /* locationSearchTable.swift in Sources */,
+				53ECD1C520290827006BEDF0 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -133,11 +133,11 @@ extension placePickerViewController: MKMapViewDelegate {
         var markerView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKMarkerAnnotationView
         markerView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
         markerView?.canShowCallout = true
-        let button = UIButton(type: .contactAdd)
         
-        // TODO: SAVE TO FIREBASE WHEN BUTTON IS TAPPED
-        button.addTarget(self, action: #selector(placePickerViewController.getDirections), for: .touchUpInside)
-
+        // Add Button
+        let button = UIButton(type: .contactAdd)
+        button.addTarget(self, action: #selector(placePickerViewController.getDirections), for: .touchUpInside) // TODO: SAVE TO FIREBASE WHEN BUTTON IS TAPPED
+        button.isEnabled = false // Disable Button until user enters description
         markerView?.leftCalloutAccessoryView = button
         
         return markerView

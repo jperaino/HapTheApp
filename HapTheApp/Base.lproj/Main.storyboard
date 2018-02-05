@@ -77,12 +77,29 @@
                     <view key="view" contentMode="scaleToFill" id="OzH-VU-kSO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AKk-L8-qK1">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <connections>
+                                    <outlet property="delegate" destination="X1Y-Dk-zzo" id="8WO-XA-8iC"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="AKk-L8-qK1" firstAttribute="top" secondItem="OzH-VU-kSO" secondAttribute="top" id="Hux-a5-crP"/>
+                            <constraint firstItem="AKk-L8-qK1" firstAttribute="leading" secondItem="OzH-VU-kSO" secondAttribute="leading" id="MVu-UY-K4C"/>
+                            <constraint firstItem="jJl-AZ-MCF" firstAttribute="top" secondItem="AKk-L8-qK1" secondAttribute="bottom" id="aY1-N9-CJ9"/>
+                            <constraint firstAttribute="trailing" secondItem="AKk-L8-qK1" secondAttribute="trailing" id="zfk-Rs-Mzu"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="AKk-L8-qK1" id="Hh4-pL-MeP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JU6-b2-CZH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1034" y="134"/>
+            <point key="canvasLocation" x="1032.8" y="133.5832083958021"/>
         </scene>
     </scenes>
 </document>

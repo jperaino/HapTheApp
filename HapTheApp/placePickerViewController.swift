@@ -16,6 +16,7 @@ protocol HandleMapSearch {
 }
 
 
+
 class placePickerViewController: UIViewController {
     
     // MARK: Properties
@@ -30,8 +31,7 @@ class placePickerViewController: UIViewController {
     
     
     
-    // MARK: Methods
-    
+    // MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +64,8 @@ class placePickerViewController: UIViewController {
         mapView.mapType = .mutedStandard
     }
 
+    // MARK: Methods
+    
     @objc func getDirections() {
         if let selectedPin = selectedPin {
             let mapItem = MKMapItem(placemark: selectedPin)
@@ -72,7 +74,11 @@ class placePickerViewController: UIViewController {
         }
     }
     
-   
+    @objc func savePlace() {
+        
+        // TODO
+        
+    }
 
 }
 
@@ -91,7 +97,6 @@ extension placePickerViewController : CLLocationManagerDelegate {
             let span = MKCoordinateSpanMake(0.05, 0.05)
             let region = MKCoordinateRegion(center: location.coordinate, span: span)
             mapView.setRegion(region, animated: true)
-            
         }
     }
     
@@ -133,12 +138,18 @@ extension placePickerViewController: MKMapViewDelegate {
         var markerView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKMarkerAnnotationView
         markerView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
         markerView?.canShowCallout = true
-        
+    
         // Add Button
         let button = UIButton(type: .contactAdd)
         button.addTarget(self, action: #selector(placePickerViewController.getDirections), for: .touchUpInside) // TODO: SAVE TO FIREBASE WHEN BUTTON IS TAPPED
-        button.isEnabled = false // Disable Button until user enters description
+        button.isEnabled = true
         markerView?.leftCalloutAccessoryView = button
+        
+        let textField = UITextField()
+        textField.placeholder = "Enter Description"
+        textField.textColor = UIColor.magenta
+        markerView?.detailCalloutAccessoryView = textField
+        
         
         return markerView
     }

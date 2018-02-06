@@ -20,9 +20,13 @@ struct Constants {
     
     struct PlaceFields {
         static let UID = "UID"
-        static let placemark = "placemark"
         static let timestamp = "timestamp"
         static let blurb = "blurb"
+        static let placeName = "placeName"
+        static let placeLat = "placeLat"
+        static let placeLong = "placeLong"
+        static let placeAddress = "placeAddress"
+        
     }
     
 }

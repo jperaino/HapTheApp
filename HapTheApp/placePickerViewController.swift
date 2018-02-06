@@ -33,9 +33,11 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
     var keyboardOnScreen = false
     fileprivate var _refHandle: DatabaseHandle!
     fileprivate var _authHandle: AuthStateDidChangeListenerHandle!
+    
     var user: User?
     var displayName = "Anonymous"
-    
+    var UID: String?
+
     var blurbTextField: UITextField?
     
     
@@ -86,8 +88,13 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
                 if self.user != activeUser {
                     self.user = activeUser
                     self.signedInStatus(isSignedIn: true)
-                    let name = user!.email!.components(separatedBy: "@")[0]
+//                    let name = user!.email!.components(separatedBy: "@")[0]
+                    
+                    let name = user!.displayName!
+                    let UID = user!.uid
+
                     self.displayName = name
+                    self.UID = UID
                 }
             } else {
                 // user must sign in
@@ -124,17 +131,23 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
     
     // MARK: Methods
     
-    @objc func getDirections() {
-        if let selectedPin = selectedPin {
-            let mapItem = MKMapItem(placemark: selectedPin)
-            let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
-            mapItem.openInMaps(launchOptions: launchOptions)
-        }
-    }
+//    @objc func getDirections() {
+//        if let selectedPin = selectedPin {
+//            let mapItem = MKMapItem(placemark: selectedPin)
+//            let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+//            mapItem.openInMaps(launchOptions: launchOptions)
+//        }
+//    }
     
     @objc func didSendPlace() {
         textFieldShouldReturn()
         blurbTextField?.text = ""
+        
+        let selectedAnnotation = mapView.selectedAnnotations[0]
+        
+        mapView.removeAnnotation(selectedAnnotation)
+//        mapView.deselectAnnotation(selectedAnnotation, animated: true)
+        
     }
     
     func textFieldShouldReturn() -> Bool {
@@ -148,9 +161,25 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
     
     func sendPlace(data: [String:String]) {
         var mdata = data
-        mdata[Constants.PlaceFields.placemark] = "placeholder 1"
-        mdata[Constants.PlaceFields.timestamp] = "placeholder 2"
-        mdata[Constants.PlaceFields.UID] = "placeholder 3"
+        let date = Date()
+        
+        let selectedAnnotation = mapView.selectedAnnotations[0]
+        
+        // TODO : Can this be saved with a single unique identifier?
+        
+        let placeName = selectedAnnotation.title
+        let placeLat = String(selectedAnnotation.coordinate.latitude)
+        let placeLong = String(selectedAnnotation.coordinate.longitude)
+        let placeAddress = selectedAnnotation.subtitle
+        
+    
+        mdata[Constants.PlaceFields.timestamp] = date.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss") // TODO MAKE THIS UNIFORM TIME ZONE?
+        mdata[Constants.PlaceFields.UID] = UID!
+        mdata[Constants.PlaceFields.placeName] = placeName!
+        mdata[Constants.PlaceFields.placeLat] = placeLat
+        mdata[Constants.PlaceFields.placeLong] = placeLong
+        mdata[Constants.PlaceFields.placeAddress] = placeAddress!
+        
         ref.child("places").childByAutoId().setValue(mdata)
     }
     
@@ -257,7 +286,6 @@ extension placePickerViewController: MKMapViewDelegate {
         blurbTextField!.placeholder = "Enter Description"
         blurbTextField!.textColor = UIColor.magenta
         markerView?.detailCalloutAccessoryView = blurbTextField!
-        
         
         return markerView
     }

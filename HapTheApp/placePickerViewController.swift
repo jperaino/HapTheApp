@@ -28,7 +28,7 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
     var selectedPin: MKPlacemark? = nil
     
     var ref: DatabaseReference!
-    var places: [DataSnapshot]! = []
+    static var places: [DataSnapshot]! = []
     var storageRef: StorageReference!
     var keyboardOnScreen = false
     fileprivate var _refHandle: DatabaseHandle!
@@ -93,7 +93,7 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
         // listen for changes in the authorization state
         _authHandle = Auth.auth().addStateDidChangeListener({ (auth: Auth, user: User?) in
             //refresh data
-            self.places.removeAll(keepingCapacity: false)
+//            self.places.removeAll(keepingCapacity: false)
             // TODO : Reload data
             
             // Check if there is a current user
@@ -103,10 +103,10 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
                     self.signedInStatus(isSignedIn: true)
 //                    let name = user!.email!.components(separatedBy: "@")[0]
                     
-                    let name = user!.displayName!
+//                    let name = user!.displayName
                     let UID = user!.uid
 
-                    self.displayName = name
+//                    self.displayName = name!
                     self.UID = UID
                 }
             } else {
@@ -136,6 +136,8 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
     func configureDatabase() {
         ref = Database.database().reference()
         _refHandle = ref.child("places").observe(.childAdded) {(snapshot: DataSnapshot) in
+            placePickerViewController.places.append(snapshot)
+            
 //            self.messages.append(snapshot)
 //            self.messagesTable.insertRows(at: [IndexPath(row: self.messages.count - 1, section: 0)], with: .automatic)
 //            self.scrollToBottomMessage()

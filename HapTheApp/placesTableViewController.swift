@@ -15,10 +15,6 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
     
     // MARK - Properties
     
-    var ref: DatabaseReference!
-    var places: [DataSnapshot]! = []
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,7 +39,7 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return placePickerViewController.places.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -54,11 +50,12 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
             fatalError("The dequeued cell is not an instance of PlacesTableViewCell.")
         }
         
-//        let placeSnapsot: DataSnapshot! = places[indexPath.row]
-//        let place = placeSnapsot.value as! [String:String]
-        let nameText = "Hi"
-        let addressText = "Hi"
-        let blurbText = "Hi"
+        let placeSnapsot: DataSnapshot! = placePickerViewController.places[indexPath.row]
+
+        let place = placeSnapsot.value as! [String:String]
+        let nameText = place[Constants.PlaceFields.placeName]
+        let addressText = place[Constants.PlaceFields.placeAddress]
+        let blurbText = place[Constants.PlaceFields.blurb]
         let distanceText = "1.0 km"
  
         cell.placeNameLabel.text = nameText

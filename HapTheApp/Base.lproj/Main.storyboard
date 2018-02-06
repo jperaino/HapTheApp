@@ -84,12 +84,35 @@
                                     <outlet property="delegate" destination="X1Y-Dk-zzo" id="8WO-XA-8iC"/>
                                 </connections>
                             </mapView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yo4-hl-q1x">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem systemItem="bookmarks" id="v6d-cO-RuS">
+                                        <connections>
+                                            <segue destination="L8h-nk-BaG" kind="show" id="y1y-IG-8C0"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="yRk-O8-EM6">
+                                <rect key="frame" x="152" y="84" width="71" height="29"/>
+                                <segments>
+                                    <segment title="1"/>
+                                    <segment title="2"/>
+                                    <segment title="3"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="AKk-L8-qK1" firstAttribute="top" secondItem="OzH-VU-kSO" secondAttribute="top" id="Hux-a5-crP"/>
                             <constraint firstItem="AKk-L8-qK1" firstAttribute="leading" secondItem="OzH-VU-kSO" secondAttribute="leading" id="MVu-UY-K4C"/>
+                            <constraint firstItem="yRk-O8-EM6" firstAttribute="centerX" secondItem="OzH-VU-kSO" secondAttribute="centerX" id="P6b-J4-qXE"/>
+                            <constraint firstAttribute="trailing" secondItem="Yo4-hl-q1x" secondAttribute="trailing" id="QV3-xz-z0I"/>
+                            <constraint firstItem="yRk-O8-EM6" firstAttribute="top" secondItem="3jb-7V-rff" secondAttribute="bottom" constant="20" id="Uig-2w-nVu"/>
                             <constraint firstItem="jJl-AZ-MCF" firstAttribute="top" secondItem="AKk-L8-qK1" secondAttribute="bottom" id="aY1-N9-CJ9"/>
+                            <constraint firstItem="Yo4-hl-q1x" firstAttribute="leading" secondItem="OzH-VU-kSO" secondAttribute="leading" id="sKH-MD-OLO"/>
+                            <constraint firstItem="jJl-AZ-MCF" firstAttribute="top" secondItem="Yo4-hl-q1x" secondAttribute="bottom" id="tuQ-qx-Kfx"/>
                             <constraint firstAttribute="trailing" secondItem="AKk-L8-qK1" secondAttribute="trailing" id="zfk-Rs-Mzu"/>
                         </constraints>
                     </view>

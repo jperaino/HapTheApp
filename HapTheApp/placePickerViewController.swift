@@ -72,11 +72,24 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
         locationSearchTable.mapView = mapView
         locationSearchTable.handleMapSearchDelegate = self
         mapView.mapType = .mutedStandard
+        
+        
+        
+        // Setup list view
+        let placesTable = storyboard!.instantiateViewController(withIdentifier: "PlacesTable") as! placesTableViewController
+
+        //
+        
+        
+        
+        
+        
     }
 
     // MARK: Config
     
     func configureAuth() {
+        
         // listen for changes in the authorization state
         _authHandle = Auth.auth().addStateDidChangeListener({ (auth: Auth, user: User?) in
             //refresh data

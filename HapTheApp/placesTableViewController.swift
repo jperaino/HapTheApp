@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuthUI
 import FirebaseGoogleAuthUI
+import CoreLocation
 
 class placesTableViewController: UITableViewController, UINavigationControllerDelegate {
     
@@ -18,6 +19,8 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -51,12 +54,25 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
         }
         
         let placeSnapsot: DataSnapshot! = placePickerViewController.places[indexPath.row]
-
         let place = placeSnapsot.value as! [String:String]
+        
+        // Calculate distance from current location
+        let placeLat = place[Constants.PlaceFields.placeLat]
+        let placeLong = place[Constants.PlaceFields.placeLong]
+
+        let currentCoordinates = CLLocation(latitude: 5.0, longitude: 5.0)
+        let placeCoordinates = CLLocation(latitude: Double(placeLat!)!, longitude: Double(placeLong!)!)
+        
+        let distanceInMeters = currentCoordinates.distance(from: placeCoordinates)
+        let distanceinMiles = distanceInMeters*0.000621371
+        
+        
+        
+        
         let nameText = place[Constants.PlaceFields.placeName]
         let addressText = place[Constants.PlaceFields.placeAddress]
         let blurbText = place[Constants.PlaceFields.blurb]
-        let distanceText = "1.0 km"
+        let distanceText = String(format:"%.1f", distanceinMiles)
  
         cell.placeNameLabel.text = nameText
         cell.placeAddressLabel.text = addressText

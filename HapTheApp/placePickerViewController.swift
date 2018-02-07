@@ -29,6 +29,7 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
     
     var ref: DatabaseReference!
     static var places: [DataSnapshot]! = []
+    static var placesLocal = [placeContainer]()
     var storageRef: StorageReference!
     var keyboardOnScreen = false
     fileprivate var _refHandle: DatabaseHandle!
@@ -40,6 +41,7 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
 
     var blurbTextField: UITextField?
     
+    let currentLocation = CLLocation(latitude: 0.0, longitude: 0.0)
     
     // MARK: Lifecycle
     
@@ -75,15 +77,6 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
         
         
         
-        // Setup list view
-        let placesTable = storyboard!.instantiateViewController(withIdentifier: "PlacesTable") as! placesTableViewController
-
-        //
-        
-        
-        
-        
-        
     }
 
     // MARK: Config
@@ -116,6 +109,8 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
             }
         })
     }
+
+    
     
     func loginSession() {
         let authViewController = FUIAuth.defaultAuthUI()!.authViewController()
@@ -137,22 +132,82 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
         ref = Database.database().reference()
         _refHandle = ref.child("places").observe(.childAdded) {(snapshot: DataSnapshot) in
             placePickerViewController.places.append(snapshot)
+//            self.makeLocalPlace()
+            self.sortArrayByDistance(array: placePickerViewController.places, currentLocation: self.currentLocation)
+            
             
 //            self.messages.append(snapshot)
 //            self.messagesTable.insertRows(at: [IndexPath(row: self.messages.count - 1, section: 0)], with: .automatic)
 //            self.scrollToBottomMessage()
         }
+        
+        
+        
+        
+        // Sort places array by distance to current location
+//        let currentLocation = CLLocation(latitude: 0.0, longitude: 0.0)
+//        sortArrayByDistance(array: placePickerViewController.places, currentLocation: currentLocation)
+        print("didSortArray")
+        
     }
     
     // MARK: Methods
     
-//    @objc func getDirections() {
-//        if let selectedPin = selectedPin {
-//            let mapItem = MKMapItem(placemark: selectedPin)
-//            let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
-//            mapItem.openInMaps(launchOptions: launchOptions)
-//        }
-//    }
+    func makeLocalPlace() {
+        
+        print("Making Local Places")
+        
+        placePickerViewController.placesLocal = []
+
+        for item in placePickerViewController.places {
+            ("Making a local place")
+            let distance = calcDistance(location1: currentLocation, location2: item)
+            let localPlaceContainer = placeContainer(dataSnapshot: item, distance: distance)
+            
+            placePickerViewController.placesLocal.append(localPlaceContainer!)
+            
+        }
+        
+        print("Local Places: ")
+        print(placePickerViewController.placesLocal)
+        print("Local Places Raw: ")
+        print(placePickerViewController.places)
+        
+    }
+    
+    
+    func sortArrayByDistance(array: [DataSnapshot], currentLocation: CLLocation) {
+        
+        placePickerViewController.places.sort(by: { calcDistance(location1: currentLocation, location2: $0) < calcDistance(location1: currentLocation, location2: $1) })
+        print("sortedArray")
+        
+    }
+    
+    func calcDistance(location1: CLLocation, location2: DataSnapshot) -> Double {
+        
+        print("Calculating Distance")
+        let placeSnapshot: DataSnapshot! = location2
+        let place = placeSnapshot.value as! [String:String]
+        
+        let placeLat = place[Constants.PlaceFields.placeLat]
+        let placeLong = place[Constants.PlaceFields.placeLong]
+        let placeCoordinates = CLLocation(latitude: Double(placeLat!)!, longitude: Double(placeLong!)!)
+        
+        let distanceInMeters = location1.distance(from: placeCoordinates)
+        let distanceinMiles = distanceInMeters*0.000621371
+        
+        print(distanceinMiles)
+        return distanceinMiles
+    }
+    
+    
+    @objc func getDirections() {
+        if let selectedPin = selectedPin {
+            let mapItem = MKMapItem(placemark: selectedPin)
+            let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+            mapItem.openInMaps(launchOptions: launchOptions)
+        }
+    }
     
     @objc func didSendPlace() {
         textFieldShouldReturn()
@@ -197,40 +252,10 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
         
         ref.child("places").childByAutoId().setValue(mdata)
     }
-    
-    
-    
-    
-    
-//    @objc func sendMessage() {
-//        print("here")
-//
-//        var mdata = data
-//        print(mdata)
-//        print(ref)
-//        mdata[Constants.PlaceFields.UID] = displayName
-//        ref.child("messages").childByAutoId().setValue(mdata)
-//    }
-//
-//
-//    @objc func didSendPlace() {
-//        print("willSendPlace")
-//        let _ = textFieldShouldReturn(blurbTextField!)
-//        blurbTextField!.text = ""
-//        print("didSendPlace")
-//    }
-//
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        print("textFieldShouldReturn")
-//        if !textField.text!.isEmpty {
-//            let data = [Constants.PlaceFields.comment: textField.text! as String]
-//            sendMessage(data: data)
-//            textField.resignFirstResponder()
-//        }
-//        return true
-//    }
 
-
+    
+    
+    
 }
 
 
@@ -305,4 +330,6 @@ extension placePickerViewController: MKMapViewDelegate {
         return markerView
     }
 }
+
+
 

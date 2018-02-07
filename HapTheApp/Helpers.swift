@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 
 
@@ -17,3 +18,4 @@ public extension Date {
         return dateFormatter.string(from: self)
     }
 }
+

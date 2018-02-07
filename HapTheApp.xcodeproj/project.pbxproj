@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		427523EBD5DAD53B38E67A07 /* Pods_HapTheApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B94D96B6330703215CDD6EF5 /* Pods_HapTheApp.framework */; };
+		53B0F23B202B8942003816E1 /* placeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B0F23A202B8942003816E1 /* placeContainer.swift */; };
 		53BFA19120268EF5000C416F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BFA19020268EF5000C416F /* AppDelegate.swift */; };
 		53BFA19320268EF5000C416F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BFA19220268EF5000C416F /* ViewController.swift */; };
 		53BFA19620268EF5000C416F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53BFA19420268EF5000C416F /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		1227787007F5F6F7E72687F0 /* Pods-HapTheApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HapTheApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-HapTheApp/Pods-HapTheApp.release.xcconfig"; sourceTree = "<group>"; };
+		53B0F23A202B8942003816E1 /* placeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = placeContainer.swift; sourceTree = "<group>"; };
 		53BFA18D20268EF5000C416F /* HapTheApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HapTheApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53BFA19020268EF5000C416F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		53BFA19220268EF5000C416F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				53BFA19020268EF5000C416F /* AppDelegate.swift */,
 				53BFA19220268EF5000C416F /* ViewController.swift */,
 				53BFA19420268EF5000C416F /* Main.storyboard */,
+				53B0F23A202B8942003816E1 /* placeContainer.swift */,
 				53ECD1CC20293E58006BEDF0 /* PlaceTableViewCell.swift */,
 				53ECD1B42028AFBA006BEDF0 /* placePickerViewController.swift */,
 				53ECD1C6202925F9006BEDF0 /* Helpers.swift */,
@@ -306,6 +309,7 @@
 				53BFA19320268EF5000C416F /* ViewController.swift in Sources */,
 				53ECD1B52028AFBA006BEDF0 /* placePickerViewController.swift in Sources */,
 				53BFA19120268EF5000C416F /* AppDelegate.swift in Sources */,
+				53B0F23B202B8942003816E1 /* placeContainer.swift in Sources */,
 				53ECD1B72028B5D6006BEDF0 /* locationSearchTable.swift in Sources */,
 				53ECD1C520290827006BEDF0 /* Constants.swift in Sources */,
 			);

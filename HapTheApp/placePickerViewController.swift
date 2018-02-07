@@ -27,7 +27,7 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
     var resultSearchController:UISearchController? = nil
     var selectedPin: MKPlacemark? = nil
     
-    var ref: DatabaseReference!
+    static var ref: DatabaseReference!
     static var places: [DataSnapshot]! = []
     static var placesLocal = [placeContainer]()
     var storageRef: StorageReference!
@@ -129,8 +129,8 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
     }
     
     func configureDatabase() {
-        ref = Database.database().reference()
-        _refHandle = ref.child("places").observe(.childAdded) {(snapshot: DataSnapshot) in
+        placePickerViewController.ref = Database.database().reference()
+        _refHandle = placePickerViewController.ref.child("places").observe(.childAdded) {(snapshot: DataSnapshot) in
             placePickerViewController.places.append(snapshot)
             self.sortArrayByDistance(array: placePickerViewController.places, currentLocation: placePickerViewController.currentLocation)
             
@@ -233,7 +233,7 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
         mdata[Constants.PlaceFields.placeLong] = placeLong
         mdata[Constants.PlaceFields.placeAddress] = placeAddress!
         
-        ref.child("places").childByAutoId().setValue(mdata)
+        placePickerViewController.ref.child("places").childByAutoId().setValue(mdata)
     }
 }
 

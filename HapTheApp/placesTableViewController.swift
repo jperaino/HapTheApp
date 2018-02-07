@@ -82,6 +82,36 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
         return cell
         
     }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            // delete item at indexPath
+            placePickerViewController.places.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            print(placePickerViewController.places)
+            
+            let placeSnapsot: DataSnapshot! = placePickerViewController.places[indexPath.row]
+            let key = placeSnapsot.key
+            
+            placePickerViewController.ref.child("places").child(key)
+            
+            // TODO: DELETE THE CORRECT ITEM!!!
+            
+        }
+        
+        let share = UITableViewRowAction(style: .default, title: "Share") { (action, indexPath) in
+            // share item at indexPath
+            print("I want to share: \(placePickerViewController.places[indexPath.row])")
+        }
+        
+        share.backgroundColor = UIColor.lightGray
+        
+        return [delete, share]
+        
+    }
+    
+    
 
 }
 

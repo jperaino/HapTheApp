@@ -41,7 +41,7 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
 
     var blurbTextField: UITextField?
     
-    let currentLocation = CLLocation(latitude: 0.0, longitude: 0.0)
+    static var currentLocation = CLLocation(latitude: 0.0, longitude: 0.0)
     
     // MARK: Lifecycle
     
@@ -132,22 +132,12 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
         ref = Database.database().reference()
         _refHandle = ref.child("places").observe(.childAdded) {(snapshot: DataSnapshot) in
             placePickerViewController.places.append(snapshot)
-//            self.makeLocalPlace()
-            self.sortArrayByDistance(array: placePickerViewController.places, currentLocation: self.currentLocation)
+            self.sortArrayByDistance(array: placePickerViewController.places, currentLocation: placePickerViewController.currentLocation)
             
-            
-//            self.messages.append(snapshot)
 //            self.messagesTable.insertRows(at: [IndexPath(row: self.messages.count - 1, section: 0)], with: .automatic)
 //            self.scrollToBottomMessage()
         }
-        
-        
-        
-        
-        // Sort places array by distance to current location
-//        let currentLocation = CLLocation(latitude: 0.0, longitude: 0.0)
-//        sortArrayByDistance(array: placePickerViewController.places, currentLocation: currentLocation)
-        print("didSortArray")
+
         
     }
     
@@ -160,26 +150,19 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
         placePickerViewController.placesLocal = []
 
         for item in placePickerViewController.places {
-            ("Making a local place")
-            let distance = calcDistance(location1: currentLocation, location2: item)
+            print("Making a local place")
+            let distance = calcDistance(location1: placePickerViewController.currentLocation, location2: item)
             let localPlaceContainer = placeContainer(dataSnapshot: item, distance: distance)
             
             placePickerViewController.placesLocal.append(localPlaceContainer!)
             
         }
-        
-        print("Local Places: ")
-        print(placePickerViewController.placesLocal)
-        print("Local Places Raw: ")
-        print(placePickerViewController.places)
-        
     }
-    
     
     func sortArrayByDistance(array: [DataSnapshot], currentLocation: CLLocation) {
         
         placePickerViewController.places.sort(by: { calcDistance(location1: currentLocation, location2: $0) < calcDistance(location1: currentLocation, location2: $1) })
-        print("sortedArray")
+        print("Places snapshot array was sorted")
         
     }
     
@@ -252,10 +235,6 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
         
         ref.child("places").childByAutoId().setValue(mdata)
     }
-
-    
-    
-    
 }
 
 
@@ -273,6 +252,7 @@ extension placePickerViewController : CLLocationManagerDelegate {
             let span = MKCoordinateSpanMake(0.05, 0.05)
             let region = MKCoordinateRegion(center: location.coordinate, span: span)
             mapView.setRegion(region, animated: true)
+            placePickerViewController.currentLocation = location
         }
     }
     

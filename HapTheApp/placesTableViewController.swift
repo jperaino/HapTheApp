@@ -74,21 +74,17 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
         
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             // delete item at indexPath
-            placePickerViewController.places.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            print(placePickerViewController.places)
-            
             let placeSnapsot: DataSnapshot! = placePickerViewController.places[indexPath.row]
             let key = placeSnapsot.key
             
+            placePickerViewController.places.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
             placePickerViewController.ref.child("places").child(key).removeValue()
-            
-            // TODO: DELETE THE CORRECT ITEM!!!
             
         }
         
         let share = UITableViewRowAction(style: .default, title: "Share") { (action, indexPath) in
-            // share item at indexPath
+            // TODO: share item at indexPath
             print("I want to share: \(placePickerViewController.places[indexPath.row])")
         }
         

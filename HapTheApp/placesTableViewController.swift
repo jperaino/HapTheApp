@@ -61,7 +61,7 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
         let nameText = place[Constants.PlaceFields.placeName]
         let cityText = place[Constants.PlaceFields.placeAddress]
         let addressText = "placeholder"
-        let blurbText = place[Constants.PlaceFields.blurb]
+        let blurbText = "+ " + place[Constants.PlaceFields.blurb]!
         
         
         // Switch milage display based on distance
@@ -103,9 +103,36 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
             print("I want to share: \(placePickerViewController.places[indexPath.row])")
         }
         
-        share.backgroundColor = UIColor.lightGray
         
-        return [delete, share]
+        let visit = UITableViewRowAction(style: .default, title: "Visit") { (action, indexPath) in
+            // TODO: mark as saved
+            print("I want to have visited: \(placePickerViewController.places[indexPath.row])")
+            
+            let visitAlert = UIAlertController(title: "How was it?", message: nil, preferredStyle: .alert)
+            
+            visitAlert.addTextField(configurationHandler: { (textField) in
+                textField.placeholder = "e.g Get the veggie tacos!"
+            })
+            
+            visitAlert.addAction(UIAlertAction(title: "😄", style: .default, handler: { _ in
+                print("it was good")
+            }))
+            visitAlert.addAction(UIAlertAction(title: "☹️", style: .default, handler: { _ in
+                print("it was bad")
+            }))
+            visitAlert.addAction(UIAlertAction(title: "cancel", style: .cancel, handler: { _ in
+                print("nevermind")
+            }))
+            
+            self.present(visitAlert, animated: true, completion: nil)
+            
+        }
+        
+        share.backgroundColor = UIColor.lightGray
+        visit.backgroundColor = UIColor.blue
+     
+        
+        return [delete, share, visit]
         
     }
     

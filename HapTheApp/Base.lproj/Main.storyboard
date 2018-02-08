@@ -98,7 +98,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Saved Places"/>
                                 <connections>
-                                    <segue destination="dUK-tz-Hso" kind="presentation" id="ElQ-mE-fLd"/>
+                                    <segue destination="dUK-tz-Hso" kind="show" id="ElQ-mE-fLd"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -113,7 +113,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="4rH-rJ-APJ">
-                        <barButtonItem key="leftBarButtonItem" systemItem="bookmarks" id="gwS-ak-BYM"/>
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="ic_menu_36pt" id="gwS-ak-BYM">
+                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="AKk-L8-qK1" id="Hh4-pL-MeP"/>
@@ -250,7 +252,7 @@
             </objects>
             <point key="canvasLocation" x="2990" y="-422"/>
         </scene>
-        <!--Places Table View Controller-->
+        <!--Title-->
         <scene sceneID="5TQ-TD-xhv">
             <objects>
                 <tableViewController storyboardIdentifier="PlacesTable" id="VgK-GE-d4u" customClass="placesTableViewController" customModule="HapTheApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -315,20 +317,12 @@
                             <outlet property="delegate" destination="VgK-GE-d4u" id="Eem-Wf-r9l"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Yat-eZ-lfO">
-                        <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="KfX-7A-QxF">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <navigationItem key="navigationItem" title="Title" id="rJ5-wx-bva">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="zJG-nd-LSt">
+                            <connections>
+                                <segue destination="fmO-Hg-1vd" kind="presentation" id="lvC-0g-SCB"/>
+                            </connections>
                         </barButtonItem>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="TUJ-Bm-Dvh">
-                            <rect key="frame" x="102" y="7" width="171" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <segments>
-                                <segment title="Nearby"/>
-                                <segment title="Everywhere"/>
-                            </segments>
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </segmentedControl>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="heJ-fx-ouq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -370,7 +364,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qGi-UR-s1Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2990" y="324"/>
+            <point key="canvasLocation" x="2954" y="324"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic_menu_36pt" width="36" height="36"/>
+    </resources>
 </document>

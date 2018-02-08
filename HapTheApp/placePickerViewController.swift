@@ -56,8 +56,12 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
         
         openButton.target = self.revealViewController()
         openButton.action = Selector("revealToggle:")
-        
+    
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        
+        
+        
+        
         
     }
 

@@ -19,8 +19,6 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
-        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -56,19 +54,8 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
         let placeSnapsot: DataSnapshot! = placePickerViewController.places[indexPath.row]
         let place = placeSnapsot.value as! [String:String]
         
-        
-        // TODO: STORE LOCATION IN PREVIOUS STEP AND REUSE
         // Calculate distance from current location:
-        let placeLat = place[Constants.PlaceFields.placeLat]
-        let placeLong = place[Constants.PlaceFields.placeLong]
-
-        let currentCoordinates = placePickerViewController.currentLocation
-        let placeCoordinates = CLLocation(latitude: Double(placeLat!)!, longitude: Double(placeLong!)!)
-        
-        let distanceInMeters = currentCoordinates.distance(from: placeCoordinates)
-        let distanceinMiles = distanceInMeters*0.000621371
-        
-        
+        let distanceinMiles = helpers.calculateDistance(dataSnapshot: placeSnapsot)
         let nameText = place[Constants.PlaceFields.placeName]
         let addressText = place[Constants.PlaceFields.placeAddress]
         let blurbText = place[Constants.PlaceFields.blurb]
@@ -94,7 +81,7 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
             let placeSnapsot: DataSnapshot! = placePickerViewController.places[indexPath.row]
             let key = placeSnapsot.key
             
-            placePickerViewController.ref.child("places").child(key)
+            placePickerViewController.ref.child("places").child(key).removeValue()
             
             // TODO: DELETE THE CORRECT ITEM!!!
             

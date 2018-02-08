@@ -49,32 +49,7 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
         super.viewDidLoad()
         
         configureAuth()
-        
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.requestLocation()
-        
-        // Setup search results table
-        let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
-        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
-        resultSearchController?.searchResultsUpdater = locationSearchTable
-        
-        // Setup search bar
-        let searchBar = resultSearchController!.searchBar
-        searchBar.sizeToFit()
-        searchBar.placeholder = "Search for places"
-        navigationItem.titleView = resultSearchController?.searchBar
-        
-        // Configure UISearchController appearance
-        resultSearchController?.hidesNavigationBarDuringPresentation = false
-        resultSearchController?.dimsBackgroundDuringPresentation = true
-        definesPresentationContext = true
-    
-        locationSearchTable.mapView = mapView
-        locationSearchTable.handleMapSearchDelegate = self
-        mapView.mapType = .mutedStandard
-        
+        configurePlacesSearch()
         
         
     }
@@ -109,8 +84,6 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
             }
         })
     }
-
-    
     
     func loginSession() {
         let authViewController = FUIAuth.defaultAuthUI()!.authViewController()
@@ -137,13 +110,42 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
 //            self.messagesTable.insertRows(at: [IndexPath(row: self.messages.count - 1, section: 0)], with: .automatic)
 //            self.scrollToBottomMessage()
         }
-
+    }
+    
+    // MARK: Map View and Search Bar
+    
+    func configurePlacesSearch() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestLocation()
+        
+        // Setup search results table
+        let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
+        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
+        resultSearchController?.searchResultsUpdater = locationSearchTable
+        
+        // Setup search bar
+        let searchBar = resultSearchController!.searchBar
+        searchBar.sizeToFit()
+        searchBar.placeholder = "Search for places"
+        navigationItem.titleView = resultSearchController?.searchBar
+        
+        // Configure UISearchController appearance
+        resultSearchController?.hidesNavigationBarDuringPresentation = false
+        resultSearchController?.dimsBackgroundDuringPresentation = true
+        definesPresentationContext = true
+        
+        locationSearchTable.mapView = mapView
+        locationSearchTable.handleMapSearchDelegate = self
+        mapView.mapType = .mutedStandard
         
     }
     
+    
     // MARK: Methods
     
-    func makeLocalPlace() {
+    func makeLocalPlaces() {
         
         print("Making Local Places")
         
@@ -151,8 +153,7 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
 
         for item in placePickerViewController.places {
             print("Making a local place")
-            let distance = calcDistance(location1: placePickerViewController.currentLocation, location2: item)
-            let localPlaceContainer = placeContainer(dataSnapshot: item, distance: distance)
+            let localPlaceContainer = placeContainer(dataSnapshot: item)
             
             placePickerViewController.placesLocal.append(localPlaceContainer!)
             
@@ -161,29 +162,12 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
     
     func sortArrayByDistance(array: [DataSnapshot], currentLocation: CLLocation) {
         
-        placePickerViewController.places.sort(by: { calcDistance(location1: currentLocation, location2: $0) < calcDistance(location1: currentLocation, location2: $1) })
+        placePickerViewController.places.sort(by: { helpers.calculateDistance(dataSnapshot: $0) < helpers.calculateDistance(dataSnapshot: $1) })
         print("Places snapshot array was sorted")
         
     }
     
-    func calcDistance(location1: CLLocation, location2: DataSnapshot) -> Double {
-        
-        print("Calculating Distance")
-        let placeSnapshot: DataSnapshot! = location2
-        let place = placeSnapshot.value as! [String:String]
-        
-        let placeLat = place[Constants.PlaceFields.placeLat]
-        let placeLong = place[Constants.PlaceFields.placeLong]
-        let placeCoordinates = CLLocation(latitude: Double(placeLat!)!, longitude: Double(placeLong!)!)
-        
-        let distanceInMeters = location1.distance(from: placeCoordinates)
-        let distanceinMiles = distanceInMeters*0.000621371
-        
-        print(distanceinMiles)
-        return distanceinMiles
-    }
-    
-    
+
     @objc func getDirections() {
         if let selectedPin = selectedPin {
             let mapItem = MKMapItem(placemark: selectedPin)

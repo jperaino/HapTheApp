@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import CoreLocation
 
 
 class placeContainer: NSObject {
@@ -16,15 +17,26 @@ class placeContainer: NSObject {
     
     var dataSnapshot: DataSnapshot
     var distance: Double?
+    var UID: String
     
     // MARK: - Initialization
     
-    init?(dataSnapshot: DataSnapshot, distance: Double?) {
+    init?(dataSnapshot: DataSnapshot) {
+        
+        self.dataSnapshot = dataSnapshot
+        let distanceInMiles = helpers.calculateDistance(dataSnapshot: dataSnapshot)
         
         // Initialize stored properties.
         self.dataSnapshot = dataSnapshot
-        self.distance = distance
+        self.distance = distanceInMiles
+        self.UID = dataSnapshot.key
     }
-        
+    
+    // MARK: - Functions
+    
+    
+    
+    
+    
 }
 

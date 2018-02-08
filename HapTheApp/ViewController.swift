@@ -18,6 +18,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        
         // Handle the text field's user input through delegate callbacks.
         nameTextField.delegate = self
     }

@@ -146,22 +146,36 @@
             </objects>
             <point key="canvasLocation" x="116" y="-242"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Side Table View Controller-->
         <scene sceneID="3LS-TE-5g4">
             <objects>
-                <tableViewController storyboardIdentifier="sw_rear" id="RGa-2N-a83" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="YO0-Ey-USu">
+                <tableViewController storyboardIdentifier="sw_rear" id="RGa-2N-a83" customClass="sideTableViewController" customModule="HapTheApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="YO0-Ey-USu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                        <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="DUL-JF-Qnb">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="sideMenuCell" textLabel="qej-KF-Agy" style="IBUITableViewCellStyleDefault" id="DUL-JF-Qnb" customClass="sideTableViewCell" customModule="HapTheApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DUL-JF-Qnb" id="iHv-VH-kYG">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qej-KF-Agy">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                <connections>
+                                    <outlet property="title" destination="qej-KF-Agy" id="VoF-Ac-jBu"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -172,7 +186,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pKx-WN-a5N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1844" y="-612"/>
+            <point key="canvasLocation" x="1031" y="-606"/>
         </scene>
         <!--Location Search Table-->
         <scene sceneID="5up-cX-M9V">
@@ -216,7 +230,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1eX-33-cqy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2990" y="-400"/>
+            <point key="canvasLocation" x="2990" y="-422"/>
         </scene>
         <!--Places Table View Controller-->
         <scene sceneID="5TQ-TD-xhv">
@@ -283,7 +297,9 @@
                             <outlet property="delegate" destination="VgK-GE-d4u" id="Eem-Wf-r9l"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Yat-eZ-lfO"/>
+                    <navigationItem key="navigationItem" id="Yat-eZ-lfO">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="KfX-7A-QxF"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="heJ-fx-ouq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

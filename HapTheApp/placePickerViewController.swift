@@ -19,6 +19,8 @@ protocol HandleMapSearch {
 
 class placePickerViewController: UIViewController, UINavigationControllerDelegate {
     
+    
+    
     // MARK: Properties
     let locationManager = CLLocationManager()
     
@@ -54,6 +56,8 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
         
         openButton.target = self.revealViewController()
         openButton.action = Selector("revealToggle:")
+        
+        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
     }
 

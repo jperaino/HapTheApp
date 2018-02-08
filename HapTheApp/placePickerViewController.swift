@@ -43,6 +43,7 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
     
     static var currentLocation = CLLocation(latitude: 0.0, longitude: 0.0)
     
+    @IBOutlet weak var openButton: UIBarButtonItem!
     // MARK: Lifecycle
     
     override func viewDidLoad() {
@@ -51,6 +52,8 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
         configureAuth()
         configurePlacesSearch()
         
+        openButton.target = self.revealViewController()
+        openButton.action = Selector("revealToggle:")
         
     }
 

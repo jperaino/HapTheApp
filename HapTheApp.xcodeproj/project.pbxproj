@@ -11,6 +11,8 @@
 		53B0F23B202B8942003816E1 /* placeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B0F23A202B8942003816E1 /* placeContainer.swift */; };
 		53B0F242202C8E6D003816E1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53B0F241202C8E6D003816E1 /* GoogleService-Info.plist */; };
 		53B0F244202C8ECE003816E1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53B0F243202C8ECE003816E1 /* Info.plist */; };
+		53B0F252202CBB37003816E1 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B0F250202CBB36003816E1 /* SWRevealViewController.m */; };
+		53B0F256202CBDC6003816E1 /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B0F255202CBDC6003816E1 /* TempViewController.swift */; };
 		53BFA19120268EF5000C416F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BFA19020268EF5000C416F /* AppDelegate.swift */; };
 		53BFA19320268EF5000C416F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BFA19220268EF5000C416F /* ViewController.swift */; };
 		53BFA19620268EF5000C416F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53BFA19420268EF5000C416F /* Main.storyboard */; };
@@ -32,6 +34,10 @@
 		53B0F23A202B8942003816E1 /* placeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = placeContainer.swift; sourceTree = "<group>"; };
 		53B0F241202C8E6D003816E1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Desktop/HapTheApp-master/HapTheApp/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		53B0F243202C8ECE003816E1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		53B0F24F202CBB35003816E1 /* HapTheApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HapTheApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		53B0F250202CBB36003816E1 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		53B0F251202CBB37003816E1 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		53B0F255202CBDC6003816E1 /* TempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
 		53BFA18D20268EF5000C416F /* HapTheApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HapTheApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53BFA19020268EF5000C416F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		53BFA19220268EF5000C416F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -91,10 +97,27 @@
 		53B0F23D202C8D4E003816E1 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				53B0F251202CBB37003816E1 /* SWRevealViewController.h */,
+				53B0F250202CBB36003816E1 /* SWRevealViewController.m */,
 				53ECD1C820293170006BEDF0 /* LaunchScreen.storyboard */,
 				53BFA19920268EF5000C416F /* LaunchScreen.storyboard */,
+				53B0F24F202CBB35003816E1 /* HapTheApp-Bridging-Header.h */,
 			);
 			path = Support;
+			sourceTree = "<group>";
+		};
+		53B0F245202CB764003816E1 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		53B0F248202CB77C003816E1 /* Transitioning */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Transitioning;
 			sourceTree = "<group>";
 		};
 		53BFA18420268EF5000C416F = {
@@ -118,8 +141,11 @@
 		53BFA18F20268EF5000C416F /* HapTheApp */ = {
 			isa = PBXGroup;
 			children = (
+				53B0F248202CB77C003816E1 /* Transitioning */,
+				53B0F245202CB764003816E1 /* Presentation */,
 				53BFA19020268EF5000C416F /* AppDelegate.swift */,
 				53BFA19420268EF5000C416F /* Main.storyboard */,
+				53B0F255202CBDC6003816E1 /* TempViewController.swift */,
 				53B0F23A202B8942003816E1 /* placeContainer.swift */,
 				53ECD1CC20293E58006BEDF0 /* PlaceTableViewCell.swift */,
 				53ECD1B42028AFBA006BEDF0 /* placePickerViewController.swift */,
@@ -173,6 +199,7 @@
 				TargetAttributes = {
 					53BFA18C20268EF5000C416F = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -328,6 +355,8 @@
 				53ECD1B52028AFBA006BEDF0 /* placePickerViewController.swift in Sources */,
 				53BFA19120268EF5000C416F /* AppDelegate.swift in Sources */,
 				53B0F23B202B8942003816E1 /* placeContainer.swift in Sources */,
+				53B0F256202CBDC6003816E1 /* TempViewController.swift in Sources */,
+				53B0F252202CBB37003816E1 /* SWRevealViewController.m in Sources */,
 				53ECD1B72028B5D6006BEDF0 /* locationSearchTable.swift in Sources */,
 				53ECD1C520290827006BEDF0 /* Constants.swift in Sources */,
 			);
@@ -467,14 +496,17 @@
 			baseConfigurationReference = 9F9716DF14B4569A870FE0FF /* Pods-HapTheApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4475DMY33A;
 				INFOPLIST_FILE = HapTheApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jimperaino.HapTheApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "HapTheApp/Support/HapTheApp-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -483,14 +515,16 @@
 			baseConfigurationReference = 1227787007F5F6F7E72687F0 /* Pods-HapTheApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4475DMY33A;
 				INFOPLIST_FILE = HapTheApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jimperaino.HapTheApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "HapTheApp/Support/HapTheApp-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

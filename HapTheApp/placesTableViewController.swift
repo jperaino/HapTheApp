@@ -16,6 +16,8 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
     
     // MARK - Properties
     
+    var distanceText = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -57,9 +59,22 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
         // Calculate distance from current location:
         let distanceinMiles = helpers.calculateDistance(dataSnapshot: placeSnapsot)
         let nameText = place[Constants.PlaceFields.placeName]
-        let addressText = place[Constants.PlaceFields.placeAddress]
+        let cityText = place[Constants.PlaceFields.placeAddress]
+        let addressText = "placeholder"
         let blurbText = place[Constants.PlaceFields.blurb]
-        let distanceText = String(format:"%.1f mi", distanceinMiles)
+        
+        
+        // Switch milage display based on distance
+        
+        if distanceinMiles < 0.1 {
+            let distanceInFeet = round(distanceinMiles/5280)
+            distanceText = String(format:"%d ft", distanceInFeet)
+        } else if distanceinMiles < 25.0 {
+            distanceText = String(format:"%.1f mi", distanceinMiles)
+        } else {
+            distanceText = cityText!  // TODO: HANDLE UNWRAPPING SAFELY
+        }
+        
  
         cell.placeNameLabel.text = nameText
         cell.placeAddressLabel.text = addressText

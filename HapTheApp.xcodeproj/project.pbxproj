@@ -12,7 +12,6 @@
 		53B0F242202C8E6D003816E1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53B0F241202C8E6D003816E1 /* GoogleService-Info.plist */; };
 		53B0F244202C8ECE003816E1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53B0F243202C8ECE003816E1 /* Info.plist */; };
 		53B0F252202CBB37003816E1 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B0F250202CBB36003816E1 /* SWRevealViewController.m */; };
-		53B0F256202CBDC6003816E1 /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B0F255202CBDC6003816E1 /* TempViewController.swift */; };
 		53B0F258202CC205003816E1 /* sideTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B0F257202CC205003816E1 /* sideTableViewController.swift */; };
 		53B0F25A202CC407003816E1 /* sideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B0F259202CC407003816E1 /* sideTableViewCell.swift */; };
 		53BFA19120268EF5000C416F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BFA19020268EF5000C416F /* AppDelegate.swift */; };
@@ -39,7 +38,6 @@
 		53B0F24F202CBB35003816E1 /* HapTheApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HapTheApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		53B0F250202CBB36003816E1 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		53B0F251202CBB37003816E1 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
-		53B0F255202CBDC6003816E1 /* TempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
 		53B0F257202CC205003816E1 /* sideTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sideTableViewController.swift; sourceTree = "<group>"; };
 		53B0F259202CC407003816E1 /* sideTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sideTableViewCell.swift; sourceTree = "<group>"; };
 		53BFA18D20268EF5000C416F /* HapTheApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HapTheApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,7 +148,6 @@
 				53BFA19420268EF5000C416F /* Main.storyboard */,
 				53B0F259202CC407003816E1 /* sideTableViewCell.swift */,
 				53B0F257202CC205003816E1 /* sideTableViewController.swift */,
-				53B0F255202CBDC6003816E1 /* TempViewController.swift */,
 				53B0F23A202B8942003816E1 /* placeContainer.swift */,
 				53ECD1CC20293E58006BEDF0 /* PlaceTableViewCell.swift */,
 				53ECD1B42028AFBA006BEDF0 /* placePickerViewController.swift */,
@@ -363,7 +360,6 @@
 				53ECD1B52028AFBA006BEDF0 /* placePickerViewController.swift in Sources */,
 				53BFA19120268EF5000C416F /* AppDelegate.swift in Sources */,
 				53B0F23B202B8942003816E1 /* placeContainer.swift in Sources */,
-				53B0F256202CBDC6003816E1 /* TempViewController.swift in Sources */,
 				53B0F252202CBB37003816E1 /* SWRevealViewController.m in Sources */,
 				53ECD1B72028B5D6006BEDF0 /* locationSearchTable.swift in Sources */,
 				53ECD1C520290827006BEDF0 /* Constants.swift in Sources */,

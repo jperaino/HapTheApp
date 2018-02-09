@@ -21,6 +21,7 @@
 		53BFA19B20268EF5000C416F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53BFA19920268EF5000C416F /* LaunchScreen.storyboard */; };
 		53CF8F2A202DFBE60019F4FF /* annotationUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CF8F29202DFBE60019F4FF /* annotationUID.swift */; };
 		53CF8F2C202E01750019F4FF /* backMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CF8F2B202E01750019F4FF /* backMenuItem.swift */; };
+		53CF8F2E202E16F40019F4FF /* sideHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CF8F2D202E16F40019F4FF /* sideHeaderTableViewCell.swift */; };
 		53ECD1B52028AFBA006BEDF0 /* placePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53ECD1B42028AFBA006BEDF0 /* placePickerViewController.swift */; };
 		53ECD1B72028B5D6006BEDF0 /* locationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53ECD1B62028B5D6006BEDF0 /* locationSearchTable.swift */; };
 		53ECD1C12028E85B006BEDF0 /* mapCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53ECD1C02028E85B006BEDF0 /* mapCalloutView.xib */; };
@@ -50,6 +51,7 @@
 		53BFA19A20268EF5000C416F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		53CF8F29202DFBE60019F4FF /* annotationUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = annotationUID.swift; sourceTree = "<group>"; };
 		53CF8F2B202E01750019F4FF /* backMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = backMenuItem.swift; sourceTree = "<group>"; };
+		53CF8F2D202E16F40019F4FF /* sideHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sideHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		53ECD1B42028AFBA006BEDF0 /* placePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = placePickerViewController.swift; sourceTree = "<group>"; };
 		53ECD1B62028B5D6006BEDF0 /* locationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = locationSearchTable.swift; sourceTree = "<group>"; };
 		53ECD1C02028E85B006BEDF0 /* mapCalloutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = mapCalloutView.xib; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				53BFA19020268EF5000C416F /* AppDelegate.swift */,
 				53BFA19420268EF5000C416F /* Main.storyboard */,
 				53B0F259202CC407003816E1 /* sideTableViewCell.swift */,
+				53CF8F2D202E16F40019F4FF /* sideHeaderTableViewCell.swift */,
 				53B0F257202CC205003816E1 /* sideTableViewController.swift */,
 				53B0F23A202B8942003816E1 /* placeContainer.swift */,
 				53ECD1CC20293E58006BEDF0 /* PlaceTableViewCell.swift */,
@@ -365,6 +368,7 @@
 				53B0F258202CC205003816E1 /* sideTableViewController.swift in Sources */,
 				53ECD1B52028AFBA006BEDF0 /* placePickerViewController.swift in Sources */,
 				53CF8F2C202E01750019F4FF /* backMenuItem.swift in Sources */,
+				53CF8F2E202E16F40019F4FF /* sideHeaderTableViewCell.swift in Sources */,
 				53BFA19120268EF5000C416F /* AppDelegate.swift in Sources */,
 				53B0F23B202B8942003816E1 /* placeContainer.swift in Sources */,
 				53B0F252202CBB37003816E1 /* SWRevealViewController.m in Sources */,

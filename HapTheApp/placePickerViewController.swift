@@ -60,10 +60,6 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
     
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
-        
-        
-        
-        
     }
 
     // MARK: Config

@@ -16,8 +16,7 @@ class sideTableViewController: UITableViewController {
         super.viewDidLoad()
 
         TableArray = [
-            backMenuItem(title: "Username", action: nil),
-            backMenuItem(title: "Home", action: nil),
+            backMenuItem(title: "About", action: nil),
             backMenuItem(title: "Invite Friends", action: nil),
             backMenuItem(title: "Notifications", action: nil),
             backMenuItem(title: "Settings", action: nil),
@@ -25,6 +24,8 @@ class sideTableViewController: UITableViewController {
             ]
             
         print(TableArray)
+        
+        
         
     }
     
@@ -43,21 +44,38 @@ class sideTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return TableArray.count
+        
+        switch (section) {
+        case 0:
+            return 1
+        case 1:
+            return TableArray.count;
+        default:
+            return 0
+            
+        }
+
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "sideMenuCell", for: indexPath) as! sideTableViewCell
-    
-        cell.title.text = TableArray[indexPath.row].title
-        print("made a cell")
-        return cell
+        
+        var cell = sideTableViewCell()
+        
+        switch (indexPath.section) {
+        case 0:
+            cell = tableView.dequeueReusableCell(withIdentifier: "sideHeaderCell", for: indexPath) as! sideTableViewCell
+        default:
+            cell = tableView.dequeueReusableCell(withIdentifier: "sideMenuCell", for: indexPath) as! sideTableViewCell
+            cell.title.text = TableArray[indexPath.row].title
+            print("made a cell")
+        }
+            return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

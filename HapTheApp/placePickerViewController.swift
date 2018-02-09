@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import Firebase
 import FirebaseAuthUI
+import CoreLocation
 
 // MARK: Protocols
 
@@ -114,13 +115,20 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
     
     func configureDatabase() {
         placePickerViewController.ref = Database.database().reference()
+        
         _refHandle = placePickerViewController.ref.child("places").observe(.childAdded) {(snapshot: DataSnapshot) in
             placePickerViewController.places.append(snapshot)
+            self.populateMap(snapshot: snapshot)
             self.sortArrayByDistance(array: placePickerViewController.places, currentLocation: placePickerViewController.currentLocation)
+            
             
 //            self.messagesTable.insertRows(at: [IndexPath(row: self.messages.count - 1, section: 0)], with: .automatic)
 //            self.scrollToBottomMessage()
+            
+            
         }
+        
+        
     }
     
     // MARK: Map View and Search Bar
@@ -230,6 +238,61 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
         
         placePickerViewController.ref.child("places").childByAutoId().setValue(mdata)
     }
+    
+    func populateMap(snapshot: DataSnapshot) {
+//        mapView.remove(mapView.annotations as! MKOverlay)
+        print("map items count: " + String(placePickerViewController.places.count))
+        
+            let place = snapshot.value as! [String:String]
+            
+            let placeLat = place[Constants.PlaceFields.placeLat]
+            let placeLong = place[Constants.PlaceFields.placeLong]
+            let placeCoordinates = CLLocation(latitude: Double(placeLat!)!, longitude: Double(placeLong!)!)
+            
+            let annotation = MKPointAnnotation()
+  
+        
+            annotation.coordinate = placeCoordinates.coordinate
+            annotation.title = place[Constants.PlaceFields.placeName]
+        
+//        if place[Constants.PlaceFields.UID] == UID! {
+//
+//            annotation.pointTintColor = UIColor.green
+//
+//
+//        }
+        
+        
+        
+            mapView.addAnnotation(annotation)
+            print("point was added" + String(mapView.annotations.count))
+        
+    
+    }
+    
+    
+//    func dropPinZoomIn(placemark:MKPlacemark){
+//        // cache the pin
+//        selectedPin = placemark
+//        // clear existing pins
+//        mapView.removeAnnotations(mapView.annotations)
+//        let annotation = MKPointAnnotation()
+//        annotation.coordinate = placemark.coordinate
+//        annotation.title = placemark.name
+//        if let city = placemark.locality,
+//            let state = placemark.administrativeArea {
+//            annotation.subtitle = city + ", " + state
+//        }
+//        mapView.addAnnotation(annotation)
+//        mapView.selectAnnotation(annotation, animated: true)
+//
+//        let span = MKCoordinateSpanMake(0.05, 0.05)
+//        let region = MKCoordinateRegionMake(placemark.coordinate, span)
+//        mapView.setRegion(region, animated: true)
+//    }
+    
+    
+    
 }
 
 
@@ -279,16 +342,26 @@ extension placePickerViewController: HandleMapSearch {
     }
 }
 
+
+
 extension placePickerViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
             //return nil so map view draws "blue dot" for standard user location
             return nil
         }
+        
         let reuseId = "marker"
         var markerView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKMarkerAnnotationView
         markerView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
         markerView?.canShowCallout = true
+        
+//        var friendMarkerView = mapView.dequeueReusableAnnotationView(withIdentifier: "friendMarker") as? MKMarkerAnnotationView
+//        friendMarkerView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "friendMarker")
+//        markerView?.canShowCallout = false
+//        markerView?.markerTintColor = UIColor.green
+        
+
     
         // Add Button
         let button = UIButton(type: .contactAdd)
@@ -301,6 +374,9 @@ extension placePickerViewController: MKMapViewDelegate {
         blurbTextField!.placeholder = "Enter Description"
         blurbTextField!.textColor = UIColor.magenta
         markerView?.detailCalloutAccessoryView = blurbTextField!
+        
+        
+        
         
         return markerView
     }

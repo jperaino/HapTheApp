@@ -10,14 +10,27 @@ import UIKit
 
 class sideTableViewController: UITableViewController {
 
-    var TableArray = [String]()
+    var TableArray = [backMenuItem]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        TableArray = ["Username","Home","Invite Friends", "Notifications", "Settings","Logout"]
-        
+        TableArray = [
+            backMenuItem(title: "Username", action: nil),
+            backMenuItem(title: "Home", action: nil),
+            backMenuItem(title: "Invite Friends", action: nil),
+            backMenuItem(title: "Notifications", action: nil),
+            backMenuItem(title: "Settings", action: nil),
+            backMenuItem(title: "Logout", action: "signMeOut"),
+            ]
+            
         print(TableArray)
+        
+    }
+    
+    func testAction() {
+        
+        print("I'm doing this test action I hope you like it")
         
     }
 
@@ -40,12 +53,24 @@ class sideTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "sideMenuCell", for: indexPath) as! sideTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "sideMenuCell", for: indexPath) as! sideTableViewCell
     
-        cell.title.text = TableArray[indexPath.row]
+        cell.title.text = TableArray[indexPath.row].title
         print("made a cell")
-        
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let myAction = TableArray[indexPath.row].action {
+            print("about to do an action")
+            
+            if myAction == "signMeOut" {
+                placePickerViewController.signMeOut()
+            }
+            
+            print("did an action")
+        }
+        
     }
  
 

@@ -125,11 +125,20 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
 //            self.messagesTable.insertRows(at: [IndexPath(row: self.messages.count - 1, section: 0)], with: .automatic)
 //            self.scrollToBottomMessage()
             
-            
         }
-        
-        
     }
+    
+    static func signMeOut() {
+        print("attempting signout")
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
+            }
+        }
+    
+    
     
     // MARK: Map View and Search Bar
     

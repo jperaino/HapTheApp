@@ -136,7 +136,12 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
             } catch let signOutError as NSError {
             print("Error signing out: %@", signOutError)
             }
+        placePickerViewController.places.removeAll(keepingCapacity: false)
+        placePickerViewController.placesLocal.removeAll(keepingCapacity: false)
+        
+        
         }
+    
     
     
     

@@ -156,32 +156,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
-                        <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="sideHeaderCell" rowHeight="100" id="DUL-JF-Qnb" customClass="sideTableViewCell" customModule="HapTheApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="sideHeaderCell" rowHeight="150" id="DUL-JF-Qnb" customClass="sideTableViewCell" customModule="HapTheApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DUL-JF-Qnb" id="iHv-VH-kYG">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="149.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="J8i-Gh-gIh">
-                                            <rect key="frame" x="16" y="41" width="343" height="48.5"/>
+                                            <rect key="frame" x="16" y="41" width="343" height="90.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfH-tA-kgO">
-                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="26.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="49.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1nh-dU-5e0">
-                                                    <rect key="frame" x="0.0" y="32.5" width="343" height="10"/>
+                                                    <rect key="frame" x="0.0" y="55.5" width="343" height="14.5"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="todo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XOu-op-Sae">
-                                                    <rect key="frame" x="0.0" y="48.5" width="343" height="0.0"/>
+                                                    <rect key="frame" x="0.0" y="76" width="343" height="14.5"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -192,14 +192,19 @@
                                     <constraints>
                                         <constraint firstAttribute="trailingMargin" secondItem="J8i-Gh-gIh" secondAttribute="trailing" id="BEQ-t7-gIS"/>
                                         <constraint firstItem="J8i-Gh-gIh" firstAttribute="top" secondItem="iHv-VH-kYG" secondAttribute="topMargin" constant="10" id="Bn3-EB-4Aj"/>
-                                        <constraint firstAttribute="bottom" secondItem="J8i-Gh-gIh" secondAttribute="bottom" constant="10" id="BsE-so-c5f"/>
+                                        <constraint firstAttribute="bottom" secondItem="J8i-Gh-gIh" secondAttribute="bottom" constant="18" id="BsE-so-c5f"/>
                                         <constraint firstItem="J8i-Gh-gIh" firstAttribute="leading" secondItem="iHv-VH-kYG" secondAttribute="leadingMargin" id="c8F-43-62v"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                <connections>
+                                    <outlet property="detailLabel" destination="XOu-op-Sae" id="iVy-g5-bcI"/>
+                                    <outlet property="nameLabel" destination="nfH-tA-kgO" id="8SM-HT-qRk"/>
+                                    <outlet property="usernameLabel" destination="1nh-dU-5e0" id="bTN-dg-qH1"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="sideMenuCell" textLabel="dtb-ek-BGU" style="IBUITableViewCellStyleDefault" id="9sD-CG-yaP" customClass="sideTableViewCell" customModule="HapTheApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="128" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="178" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9sD-CG-yaP" id="3FJ-vV-YyF">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>

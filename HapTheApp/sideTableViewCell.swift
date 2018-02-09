@@ -10,7 +10,15 @@ import UIKit
 
 class sideTableViewCell: UITableViewCell {
 
+    // Header Cell Outlets
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var detailLabel: UILabel!
+    
+    // Typical Cell Outlets
     @IBOutlet weak var title: UILabel!
+    
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

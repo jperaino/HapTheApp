@@ -12,6 +12,10 @@ class sideTableViewController: UITableViewController {
 
     var TableArray = [backMenuItem]()
     
+    static var nameLabel: UILabel?
+    static var emailLabel: UILabel?
+    static var detailLabel: UILabel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,10 +27,15 @@ class sideTableViewController: UITableViewController {
             backMenuItem(title: "Logout", action: "signMeOut"),
             ]
             
-        print(TableArray)
         
         
         
+        
+    }
+    
+    func updateHeaderLabels() {
+        let myIndexPath = IndexPath(row: 0, section: 0)
+        tableView.reloadRows(at: [myIndexPath], with: .fade)
     }
     
     func testAction() {
@@ -70,6 +79,11 @@ class sideTableViewController: UITableViewController {
         switch (indexPath.section) {
         case 0:
             cell = tableView.dequeueReusableCell(withIdentifier: "sideHeaderCell", for: indexPath) as! sideTableViewCell
+            
+            cell.nameLabel.text = placePickerViewController.displayName
+            cell.usernameLabel.text = placePickerViewController.userEmail
+            cell.detailLabel.text = ""
+        
         default:
             cell = tableView.dequeueReusableCell(withIdentifier: "sideMenuCell", for: indexPath) as! sideTableViewCell
             cell.title.text = TableArray[indexPath.row].title
@@ -90,6 +104,7 @@ class sideTableViewController: UITableViewController {
         }
         
     }
+    
  
 
     /*

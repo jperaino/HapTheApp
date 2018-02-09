@@ -39,7 +39,8 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
     fileprivate var _authHandle: AuthStateDidChangeListenerHandle!
     
     var user: User?
-    var displayName = "Anonymous"
+    static var displayName = "Anonymous"
+    static var userEmail = "todo@todo.com"
     var UID: String?
 
     var blurbTextField: UITextField?
@@ -57,7 +58,7 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
         
         openButton.target = self.revealViewController()
         openButton.action = Selector("revealToggle:")
-    
+        
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
     }
@@ -77,12 +78,15 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
                 if self.user != activeUser {
                     self.user = activeUser
                     self.signedInStatus(isSignedIn: true)
-//                    let name = user!.email!.components(separatedBy: "@")[0]
                     
-//                    let name = user!.displayName
+                    placePickerViewController.userEmail = user!.email!
+                    placePickerViewController.displayName = user!.displayName!
+                    
+                    print(placePickerViewController.userEmail)
+                    print(placePickerViewController.displayName)
+                    
+                    
                     let UID = user!.uid
-
-//                    self.displayName = name!
                     self.UID = UID
                 }
             } else {
@@ -91,6 +95,16 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
                 self.loginSession()
             }
         })
+        
+        print("updating back table names")
+        updateBackMenu()
+    }
+    
+    func updateBackMenu() {
+        
+        sideTableViewController.emailLabel?.text = "hello"
+        sideTableViewController.nameLabel?.text = "me too"
+        
     }
     
     func loginSession() {
@@ -135,6 +149,8 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
         placePickerViewController.places.removeAll(keepingCapacity: false)
         placePickerViewController.placesLocal.removeAll(keepingCapacity: false)
         
+        placePickerViewController.userEmail = ""
+        placePickerViewController.displayName = ""
         
         }
     

@@ -20,6 +20,8 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        placePickerViewController.sortArrayByDistance(array: mainVC.places, currentLocation: placePickerViewController.location)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

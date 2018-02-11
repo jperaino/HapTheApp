@@ -34,10 +34,6 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
     static var placesLocal = [placeContainer]()
     var storageRef: StorageReference!
     var keyboardOnScreen = false
-//    fileprivate var _refHandle: DatabaseHandle!
-//    fileprivate var _authHandle: AuthStateDidChangeListenerHandle!
-    
-//    var user: User?
     static var displayName = "Anonymous"
     static var userEmail = "todo@todo.com"
     var UID: String?
@@ -52,7 +48,6 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         configurePlacesSearch()
         
         openButton.target = self.revealViewController()
@@ -60,63 +55,17 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
         
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
+//        self.sortArrayByDistance(array: mainVC.places, currentLocation: placePickerViewController.currentLocation)
+        
+        for item in mainVC.places {
+            populateMap(snapshot: item)
+        }
+        
 //        self.populateMap(snapshot: snapshot)
-        self.sortArrayByDistance(array: mainVC.places, currentLocation: placePickerViewController.currentLocation)
+        
         
     }
 
-//    // MARK: Config
-//    
-//    func configureAuth() {
-//        
-//        // listen for changes in the authorization state
-//        _authHandle = Auth.auth().addStateDidChangeListener({ (auth: Auth, user: User?) in
-//            //refresh data
-////            self.places.removeAll(keepingCapacity: false)
-//            // TODO : Reload data
-//            
-//            // Check if there is a current user
-//            if let activeUser = user {
-//                if self.user != activeUser {
-//                    self.user = activeUser
-//                    self.signedInStatus(isSignedIn: true)
-//                    
-//                    placePickerViewController.userEmail = user!.email!
-//                    placePickerViewController.displayName = user!.displayName!
-//                    
-//                    print(placePickerViewController.userEmail)
-//                    print(placePickerViewController.displayName)
-//                    
-//                    
-//                    let UID = user!.uid
-//                    self.UID = UID
-//                }
-//            } else {
-//                // user must sign in
-//                self.signedInStatus(isSignedIn: false)
-//                self.loginSession()
-//            }
-//        })
-//        
-//        print("updating back table names")
-//        updateBackMenu()
-//    }
-    
-    func updateBackMenu() {
-        
-        sideTableViewController.emailLabel?.text = "hello"
-        sideTableViewController.nameLabel?.text = "me too"
-        
-    }
-    
-    
-    
-    // MARK: Sign In and Out
-    
-    
-    
-    
-    
     
     // MARK: Map View and Search Bar
     
@@ -166,7 +115,7 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
         }
     }
     
-    func sortArrayByDistance(array: [DataSnapshot], currentLocation: CLLocation) {
+    static func sortArrayByDistance(array: [DataSnapshot], currentLocation: CLLocation) {
         
         mainVC.places.sort(by: { helpers.calculateDistance(dataSnapshot: $0) < helpers.calculateDistance(dataSnapshot: $1) })
         print("Places snapshot array was sorted")
@@ -217,7 +166,7 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
         
     
         mdata[Constants.PlaceFields.timestamp] = date.toString(dateFormat: "yyyy/MMM/dd HH:mm:ss") // TODO MAKE THIS UNIFORM TIME ZONE?
-        mdata[Constants.PlaceFields.UID] = UID!
+        mdata[Constants.PlaceFields.UID] = Auth.auth().currentUser?.uid
         mdata[Constants.PlaceFields.placeName] = placeName!
         mdata[Constants.PlaceFields.placeLat] = placeLat
         mdata[Constants.PlaceFields.placeLong] = placeLong
@@ -257,29 +206,6 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
     
     }
     
-    
-//    func dropPinZoomIn(placemark:MKPlacemark){
-//        // cache the pin
-//        selectedPin = placemark
-//        // clear existing pins
-//        mapView.removeAnnotations(mapView.annotations)
-//        let annotation = MKPointAnnotation()
-//        annotation.coordinate = placemark.coordinate
-//        annotation.title = placemark.name
-//        if let city = placemark.locality,
-//            let state = placemark.administrativeArea {
-//            annotation.subtitle = city + ", " + state
-//        }
-//        mapView.addAnnotation(annotation)
-//        mapView.selectAnnotation(annotation, animated: true)
-//
-//        let span = MKCoordinateSpanMake(0.05, 0.05)
-//        let region = MKCoordinateRegionMake(placemark.coordinate, span)
-//        mapView.setRegion(region, animated: true)
-//    }
-    
-    
-    
 }
 
 
@@ -293,6 +219,7 @@ extension placePickerViewController : CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("updating locations")
         if let location = locations.first {
             let span = MKCoordinateSpanMake(0.05, 0.05)
             let region = MKCoordinateRegion(center: location.coordinate, span: span)

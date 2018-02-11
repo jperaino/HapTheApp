@@ -51,12 +51,17 @@ class sideTableViewController: UITableViewController {
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
+            
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainVC") as! mainVC
+            self.present(newViewController, animated: true, completion: nil)
+            
+            
+            
+//            mainVC().loginSession()
         } catch let signOutError as NSError {
             print("Error signing out: %@", signOutError)
         }
-        
-        // TODO: Remove any data?
-        mainVC().loginSession()
     }
     
     
@@ -91,8 +96,8 @@ class sideTableViewController: UITableViewController {
         case 0:
             cell = tableView.dequeueReusableCell(withIdentifier: "sideHeaderCell", for: indexPath) as! sideTableViewCell
             
-            cell.nameLabel.text = placePickerViewController.displayName
-            cell.usernameLabel.text = placePickerViewController.userEmail
+            cell.nameLabel.text = Auth.auth().currentUser?.displayName
+            cell.usernameLabel.text = Auth.auth().currentUser?.email
             cell.detailLabel.text = ""
         
         default:

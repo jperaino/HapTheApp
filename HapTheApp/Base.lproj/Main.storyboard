@@ -69,7 +69,7 @@
         <!--MainVC-->
         <scene sceneID="VyW-oY-x93">
             <objects>
-                <viewController id="sw9-1k-39f" customClass="mainVC" customModule="HapTheApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainVC" id="sw9-1k-39f" customClass="mainVC" customModule="HapTheApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="u50-PF-2nK"/>
                         <viewControllerLayoutGuide type="bottom" id="1Qp-22-cbq"/>
@@ -80,9 +80,6 @@
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sWD-IA-5NV">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <connections>
-                                    <segue destination="fmO-Hg-1vd" kind="embed" id="3cR-RS-YzS"/>
-                                </connections>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -125,9 +122,8 @@
                                 </segments>
                                 <color key="tintColor" red="0.53725490200000003" green="0.71372549019999998" blue="0.73725490199999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I0y-iz-PKi">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I0y-iz-PKi">
                                 <rect key="frame" x="142" y="617" width="91" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Saved Places"/>
                                 <connections>
                                     <segue destination="dUK-tz-Hso" kind="show" id="ElQ-mE-fLd"/>
@@ -138,8 +134,10 @@
                         <constraints>
                             <constraint firstItem="AKk-L8-qK1" firstAttribute="top" secondItem="OzH-VU-kSO" secondAttribute="top" id="Hux-a5-crP"/>
                             <constraint firstItem="AKk-L8-qK1" firstAttribute="leading" secondItem="OzH-VU-kSO" secondAttribute="leading" id="MVu-UY-K4C"/>
+                            <constraint firstItem="jJl-AZ-MCF" firstAttribute="top" secondItem="I0y-iz-PKi" secondAttribute="bottom" constant="20" id="NFJ-PG-Sl9"/>
                             <constraint firstItem="yRk-O8-EM6" firstAttribute="centerX" secondItem="OzH-VU-kSO" secondAttribute="centerX" id="P6b-J4-qXE"/>
                             <constraint firstItem="yRk-O8-EM6" firstAttribute="top" secondItem="3jb-7V-rff" secondAttribute="bottom" constant="20" id="Uig-2w-nVu"/>
+                            <constraint firstItem="I0y-iz-PKi" firstAttribute="centerX" secondItem="OzH-VU-kSO" secondAttribute="centerX" id="WmV-da-If5"/>
                             <constraint firstItem="jJl-AZ-MCF" firstAttribute="top" secondItem="AKk-L8-qK1" secondAttribute="bottom" id="aY1-N9-CJ9"/>
                             <constraint firstAttribute="trailing" secondItem="AKk-L8-qK1" secondAttribute="trailing" id="zfk-Rs-Mzu"/>
                         </constraints>
@@ -161,7 +159,7 @@
         <!--Reveal View Controller-->
         <scene sceneID="Gw1-Md-NRX">
             <objects>
-                <viewController id="fmO-Hg-1vd" customClass="SWRevealViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="firstVC" id="fmO-Hg-1vd" customClass="SWRevealViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qZO-Zd-OpY"/>
                         <viewControllerLayoutGuide type="bottom" id="qNV-ek-3xX"/>
@@ -200,19 +198,19 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="J8i-Gh-gIh">
                                             <rect key="frame" x="16" y="41" width="343" height="90.5"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfH-tA-kgO">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfH-tA-kgO">
                                                     <rect key="frame" x="0.0" y="0.0" width="343" height="49.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1nh-dU-5e0">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1nh-dU-5e0">
                                                     <rect key="frame" x="0.0" y="55.5" width="343" height="14.5"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="todo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XOu-op-Sae">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="todo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XOu-op-Sae">
                                                     <rect key="frame" x="0.0" y="76" width="343" height="14.5"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -311,7 +309,7 @@
             </objects>
             <point key="canvasLocation" x="2990" y="-422"/>
         </scene>
-        <!--Title-->
+        <!--Places-->
         <scene sceneID="5TQ-TD-xhv">
             <objects>
                 <tableViewController storyboardIdentifier="PlacesTable" id="VgK-GE-d4u" customClass="placesTableViewController" customModule="HapTheApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -376,7 +374,7 @@
                             <outlet property="delegate" destination="VgK-GE-d4u" id="Eem-Wf-r9l"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Title" id="rJ5-wx-bva"/>
+                    <navigationItem key="navigationItem" title="Places" id="rJ5-wx-bva"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="heJ-fx-ouq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -408,7 +406,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zXK-Z9-5A3">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.0" green="0.90196078430000004" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.68627450980000004" green="0.76078431369999999" blue="0.79607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

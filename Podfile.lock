@@ -88,6 +88,13 @@ PODS:
   - FirebaseUI/Twitter (4.5.1):
     - FirebaseUI/Auth
     - TwitterKit (~> 3.0)
+  - GoogleMaps (2.5.0):
+    - GoogleMaps/Maps (= 2.5.0)
+  - GoogleMaps/Base (2.5.0)
+  - GoogleMaps/Maps (2.5.0):
+    - GoogleMaps/Base
+  - GooglePlaces (2.5.0):
+    - GoogleMaps/Base (= 2.5.0)
   - GoogleSignIn (4.1.2):
     - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
     - GoogleToolboxForMac/NSString+URLArguments (~> 2.1)
@@ -148,6 +155,8 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Storage
   - FirebaseUI
+  - GoogleMaps
+  - GooglePlaces
 
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
@@ -163,6 +172,8 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: 81df5805a08001e69138664bdd02c6719a9ac80f
   FirebaseStorage: 181bb543d39ee3c53e0558de7ba86b1286a0427f
   FirebaseUI: 1dc9c8a87a776b488a28a28541f029e60c824cfd
+  GoogleMaps: c087b8e5dfe87ca6ebf59adb9b4894a4146bec4f
+  GooglePlaces: dd70d9d71ea1c7944846afe67de3712c99b30a77
   GoogleSignIn: d9ef55b10f0aa401a5de2747f59b725e4b9732ac
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   gRPC: d12fb1fb68b1b3ff3e0a07f59a62312331b58693
@@ -178,6 +189,6 @@ SPEC CHECKSUMS:
   TwitterCore: 644d59e75abccb26cf0a9050d2c4dea0e5412241
   TwitterKit: a2e60ddcedbf54091eac6f27685ca7a87681e1d7
 
-PODFILE CHECKSUM: 3acbed26e7365a1f1d1bacc8163539ab9836069c
+PODFILE CHECKSUM: 5f64b61f84726e05e29eac2e73103dcd5a33a6b0
 
 COCOAPODS: 1.4.0

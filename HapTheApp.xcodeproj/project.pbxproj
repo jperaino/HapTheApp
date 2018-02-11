@@ -19,7 +19,6 @@
 		53BFA19320268EF5000C416F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BFA19220268EF5000C416F /* ViewController.swift */; };
 		53BFA19620268EF5000C416F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53BFA19420268EF5000C416F /* Main.storyboard */; };
 		53BFA19820268EF5000C416F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53BFA19720268EF5000C416F /* Assets.xcassets */; };
-		53BFA19B20268EF5000C416F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53BFA19920268EF5000C416F /* LaunchScreen.storyboard */; };
 		53CF8F2A202DFBE60019F4FF /* annotationUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CF8F29202DFBE60019F4FF /* annotationUID.swift */; };
 		53CF8F2C202E01750019F4FF /* backMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CF8F2B202E01750019F4FF /* backMenuItem.swift */; };
 		53ECD1B52028AFBA006BEDF0 /* placePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53ECD1B42028AFBA006BEDF0 /* placePickerViewController.swift */; };
@@ -49,7 +48,6 @@
 		53BFA19220268EF5000C416F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		53BFA19520268EF5000C416F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		53BFA19720268EF5000C416F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		53BFA19A20268EF5000C416F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		53CF8F29202DFBE60019F4FF /* annotationUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = annotationUID.swift; sourceTree = "<group>"; };
 		53CF8F2B202E01750019F4FF /* backMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = backMenuItem.swift; sourceTree = "<group>"; };
 		53ECD1B42028AFBA006BEDF0 /* placePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = placePickerViewController.swift; sourceTree = "<group>"; };
@@ -107,7 +105,6 @@
 				53B0F251202CBB37003816E1 /* SWRevealViewController.h */,
 				53B0F250202CBB36003816E1 /* SWRevealViewController.m */,
 				53ECD1C820293170006BEDF0 /* LaunchScreen.storyboard */,
-				53BFA19920268EF5000C416F /* LaunchScreen.storyboard */,
 				53B0F24F202CBB35003816E1 /* HapTheApp-Bridging-Header.h */,
 				53CF8F29202DFBE60019F4FF /* annotationUID.swift */,
 				53CF8F2B202E01750019F4FF /* backMenuItem.swift */,
@@ -240,7 +237,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				53ECD1C12028E85B006BEDF0 /* mapCalloutView.xib in Resources */,
-				53BFA19B20268EF5000C416F /* LaunchScreen.storyboard in Resources */,
 				53ECD1C920293170006BEDF0 /* LaunchScreen.storyboard in Resources */,
 				53BFA19820268EF5000C416F /* Assets.xcassets in Resources */,
 				53BFA19620268EF5000C416F /* Main.storyboard in Resources */,
@@ -314,6 +310,8 @@
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseGoogleAuthUI.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebasePhoneAuthUI.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseTwitterAuthUI.bundle",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterShareExtensionUIResources.bundle",
@@ -325,6 +323,8 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseGoogleAuthUI.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebasePhoneAuthUI.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseTwitterAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterKitResources.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterShareExtensionUIResources.bundle",
@@ -387,14 +387,6 @@
 				53BFA19520268EF5000C416F /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		53BFA19920268EF5000C416F /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				53BFA19A20268EF5000C416F /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

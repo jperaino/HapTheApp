@@ -16,20 +16,20 @@ class helpers {
     
     // MARK: - Functions
     
-    static func calculateDistance(dataSnapshot: DataSnapshot) -> Double {
-        
-        let place = dataSnapshot.value as! [String:String]
-        
-        // Calculate distance from current location:
-        let placeLat = place[Constants.PlaceFields.placeLat]
-        let placeLong = place[Constants.PlaceFields.placeLong]
-        let placeCoordinates = CLLocation(latitude: Double(placeLat!)!, longitude: Double(placeLong!)!)
-        
-        let distanceInMeters = placePickerViewController.currentLocation.distance(from: placeCoordinates)
-        let distanceInMiles = distanceInMeters*0.000621371
-        
-        return distanceInMiles
-    }
+//    static func calculateDistance(dataSnapshot: DataSnapshot) -> Double {
+//
+//        let place = dataSnapshot.value as! [String:String]
+//
+//        // Calculate distance from current location:
+//        let placeLat = place[Constants.PlaceFields.placeLat]
+//        let placeLong = place[Constants.PlaceFields.placeLong]
+//        let placeCoordinates = CLLocation(latitude: Double(placeLat!)!, longitude: Double(placeLong!)!)
+//
+//        let distanceInMeters = placePickerViewController.currentLocation.distance(from: placeCoordinates)
+//        let distanceInMiles = distanceInMeters*0.000621371
+//
+//        return distanceInMiles
+//    }
     
     
     

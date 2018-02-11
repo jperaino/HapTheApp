@@ -59,7 +59,8 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
         let place = placeSnapsot.value as! [String:String]
         
         // Calculate distance from current location:
-        let distanceinMiles = helpers.calculateDistance(dataSnapshot: placeSnapsot)
+//        let distanceinMiles = helpers.calculateDistance(dataSnapshot: placeSnapsot)
+        let distanceinMiles = 0.25
         let nameText = place[Constants.PlaceFields.placeName]
         let cityText = place[Constants.PlaceFields.placeAddress]
         let addressText = "placeholder"

@@ -67,11 +67,20 @@ class gMapsViewController: UIViewController {
         mapView.isMyLocationEnabled = true
         
         // Add the map to the view, hide it until we have a location update.
-        view.addSubview(mapView)
+//        view.addSubview(mapView)
+        view.insertSubview(mapView, at: 0)
         mapView.isHidden = true
         
         listLikelyPlaces()
     }
+    
+    // MARK: Actions
+    
+    @IBAction func addPlaceBySearch(_ sender: Any) {
+        print("adding a place by search")
+    }
+    
+    
     
     // Populate the array with the list of likely places.
     func listLikelyPlaces() {

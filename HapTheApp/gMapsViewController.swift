@@ -27,6 +27,7 @@ class gMapsViewController: UIViewController {
     @IBOutlet weak var iAddressLabel: UILabel!
     @IBOutlet weak var iTextField: UITextField!
     
+    @IBOutlet weak var openButton: UIBarButtonItem!
     
     // An array tot hold the list of likely places.
     var likelyPlaces: [GMSPlace] = []
@@ -51,6 +52,7 @@ class gMapsViewController: UIViewController {
             marker.title = selectedPlace?.name
             marker.snippet = selectedPlace?.formattedAddress
             marker.map = mapView
+            marker.icon = #imageLiteral(resourceName: "pin-mark-blank")
         }
         
         listLikelyPlaces()
@@ -58,6 +60,8 @@ class gMapsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        self.hideKeyboardWhenTappedAround()
+        
         
         // Initialize the location manager.
         locationManager = CLLocationManager()
@@ -84,24 +88,16 @@ class gMapsViewController: UIViewController {
         infoView.isHidden = true
         
         listLikelyPlaces()
+        
+        // Enable side button
+        openButton.target = self.revealViewController()
+        openButton.action = Selector("revealToggle:")
+        
+        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        
     }
     
-    
-    
 
-    
-    
-    
-//    override func touchesBegan(_ touches: Set<AnyHashable>, with event: UIEvent) {
-//        var touch: UITouch? = touches.first
-//
-//        if touch?.view != infoView {
-//            infoView.isHidden = true
-//        }
-//    }
-    
-    
-    
     // MARK: Actions
     
     @IBAction func addPlaceBySearch(_ sender: Any) {
@@ -115,11 +111,13 @@ class gMapsViewController: UIViewController {
     @IBAction func addVisitedPlace(_ sender: Any) {
         print("I've visited \(iNameLabel)")
         hideInfoView()
+        newPlaceMarker!.icon = #imageLiteral(resourceName: "pin-mark-flag")
     }
     
     @IBAction func addPlaceToVisit(_ sender: Any) {
         print("I want to visit \(iNameLabel)")
         hideInfoView()
+        newPlaceMarker!.icon = #imageLiteral(resourceName: "pin-mark-flag")
     }
     
     
@@ -236,6 +234,7 @@ extension gMapsViewController: GMSAutocompleteViewControllerDelegate {
         let position = place.coordinate
         newPlaceMarker = GMSMarker(position: position)
         newPlaceMarker!.title = place.name
+        newPlaceMarker!.icon = #imageLiteral(resourceName: "pin-mark-blank")
         newPlaceMarker!.map = mapView
         
         mapView.animate(toLocation: position)

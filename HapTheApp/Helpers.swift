@@ -9,6 +9,7 @@
 import Foundation
 import CoreLocation
 import Firebase
+import FirebaseAuthUI
 
 
 class helpers {
@@ -44,6 +45,23 @@ public extension Date {
         return dateFormatter.string(from: self)
     }
 }
+
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+}
+
+
 
 
 

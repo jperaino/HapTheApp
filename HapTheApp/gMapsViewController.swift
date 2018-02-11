@@ -17,6 +17,8 @@ class gMapsViewController: UIViewController {
     var mapView: GMSMapView!
     var placesClient: GMSPlacesClient!
     var zoomLevel: Float = 15.0
+    var newPlace: GMSPlace?
+    var newPlaceMarker: GMSMarker?
     
     // An array tot hold the list of likely places.
     var likelyPlaces: [GMSPlace] = []
@@ -171,6 +173,26 @@ extension gMapsViewController: GMSAutocompleteViewControllerDelegate {
         print("Place address: \(String(describing: place.formattedAddress))")
         print("Place attributions: \(String(describing: place.attributions))")
         dismiss(animated: true, completion: nil)
+        
+        newPlace = place
+
+        addMarker(place: place)
+        
+    }
+    
+    func addMarker(place: GMSPlace) {
+        
+        // Remove existing marker if there's one
+        if let currentMarker = newPlaceMarker {
+            currentMarker.map = nil
+        }
+        
+        // Create a new marker
+        let position = place.coordinate
+        newPlaceMarker = GMSMarker(position: position)
+        newPlaceMarker!.title = place.name
+        newPlaceMarker!.map = mapView
+        
     }
     
     func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {

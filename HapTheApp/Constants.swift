@@ -27,7 +27,10 @@ struct Constants {
         static let placeLong = "placeLong"
         static let placeAddress = "placeAddress"
         static let privacy = "privacy"
-        
     }
+    
+    
+    
+    
     
 }

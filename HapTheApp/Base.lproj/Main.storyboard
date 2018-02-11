@@ -85,27 +85,98 @@
                                     <action selector="addPlaceBySearch:" destination="9LW-k0-aDg" eventType="touchUpInside" id="24c-fa-IYi"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q6U-Dv-MsP" customClass="infoWindow" customModule="HapTheApp" customModuleProvider="target">
-                                <rect key="frame" x="67" y="213.5" width="240" height="240"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vlN-8O-ezj">
+                                <rect key="frame" x="8" y="92" width="359" height="154"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="mnx-PA-Vv8">
+                                        <rect key="frame" x="16" y="16" width="327" height="118"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AbA-dG-OPe">
+                                                <rect key="frame" x="0.0" y="0.0" width="327" height="20.5"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jTp-uf-HTd">
+                                                <rect key="frame" x="0.0" y="28.5" width="28.5" height="13.5"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter description (e.g. Emily says to get the tacos!)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="72K-Q9-ADe">
+                                                <rect key="frame" x="0.0" y="50" width="327" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="6D5-7E-yaf">
+                                                <rect key="frame" x="0.0" y="88" width="327" height="30"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b9f-3A-2Ng">
+                                                        <rect key="frame" x="0.0" y="0.0" width="159.5" height="30"/>
+                                                        <color key="backgroundColor" red="1" green="0.1857388616" blue="0.57339501380000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <state key="normal" title="I've been here"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8BS-QE-Ujc">
+                                                        <rect key="frame" x="167.5" y="0.0" width="159.5" height="30"/>
+                                                        <color key="backgroundColor" red="0.53725490200000003" green="0.71372549019999998" blue="0.73725490199999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <state key="normal" title="I want to go here"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </button>
+                                                </subviews>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="AbA-dG-OPe" secondAttribute="trailing" id="7gG-O6-2dn"/>
+                                            <constraint firstItem="72K-Q9-ADe" firstAttribute="leading" secondItem="mnx-PA-Vv8" secondAttribute="leading" id="D1e-7s-sxd"/>
+                                            <constraint firstItem="AbA-dG-OPe" firstAttribute="top" secondItem="mnx-PA-Vv8" secondAttribute="top" id="FwN-ue-wIm"/>
+                                            <constraint firstAttribute="trailing" secondItem="72K-Q9-ADe" secondAttribute="trailing" id="VVj-E6-1fs"/>
+                                            <constraint firstAttribute="trailing" secondItem="6D5-7E-yaf" secondAttribute="trailing" id="f8i-an-erK"/>
+                                            <constraint firstItem="6D5-7E-yaf" firstAttribute="leading" secondItem="mnx-PA-Vv8" secondAttribute="leading" id="tn4-Bj-5o4"/>
+                                            <constraint firstItem="AbA-dG-OPe" firstAttribute="leading" secondItem="mnx-PA-Vv8" secondAttribute="leading" id="zJf-C8-q0p"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="240" id="YnV-cb-h6G"/>
-                                    <constraint firstAttribute="width" constant="240" id="zRt-Z3-jf5"/>
+                                    <constraint firstItem="mnx-PA-Vv8" firstAttribute="leading" secondItem="vlN-8O-ezj" secondAttribute="leading" constant="16" id="6oH-9Z-3dJ"/>
+                                    <constraint firstItem="mnx-PA-Vv8" firstAttribute="top" secondItem="vlN-8O-ezj" secondAttribute="top" constant="16" id="BbA-7r-aMh"/>
+                                    <constraint firstAttribute="trailing" secondItem="mnx-PA-Vv8" secondAttribute="trailing" constant="16" id="Ooc-Vs-cwc"/>
+                                    <constraint firstAttribute="height" constant="154" id="b3m-r8-UDR"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Q6U-Dv-MsP" firstAttribute="centerX" secondItem="URU-iJ-YrN" secondAttribute="centerX" id="KVN-n3-lke"/>
+                            <constraint firstItem="vlN-8O-ezj" firstAttribute="leading" secondItem="URU-iJ-YrN" secondAttribute="leading" constant="8" id="GGH-5T-Jom"/>
                             <constraint firstItem="WI6-8A-hoC" firstAttribute="trailing" secondItem="URU-iJ-YrN" secondAttribute="trailingMargin" id="ZVo-5j-LQf"/>
                             <constraint firstItem="WI6-8A-hoC" firstAttribute="top" secondItem="iyd-jK-v3o" secondAttribute="bottom" constant="20" id="bBv-Yl-8EE"/>
-                            <constraint firstItem="Q6U-Dv-MsP" firstAttribute="centerY" secondItem="URU-iJ-YrN" secondAttribute="centerY" id="qjo-ys-HGL"/>
+                            <constraint firstItem="vlN-8O-ezj" firstAttribute="top" secondItem="WI6-8A-hoC" secondAttribute="bottom" constant="30" id="fig-6d-e5W"/>
+                            <constraint firstAttribute="trailing" secondItem="vlN-8O-ezj" secondAttribute="trailing" constant="8" id="tnf-St-Lbv"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Btl-9c-uRf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-804" y="-1044.8275862068967"/>
+            <point key="canvasLocation" x="-804" y="-1045.7271364317842"/>
         </scene>
         <!--MainVC-->
         <scene sceneID="VyW-oY-x93">

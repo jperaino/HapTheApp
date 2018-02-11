@@ -122,6 +122,9 @@
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="addVisitedPlace:" destination="9LW-k0-aDg" eventType="touchUpInside" id="7cd-qu-JaZ"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8BS-QE-Ujc">
                                                         <rect key="frame" x="167.5" y="0.0" width="159.5" height="30"/>
@@ -133,6 +136,9 @@
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="addPlaceToVisit:" destination="9LW-k0-aDg" eventType="touchUpInside" id="v90-ru-smo"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -173,6 +179,12 @@
                             <constraint firstAttribute="trailing" secondItem="vlN-8O-ezj" secondAttribute="trailing" constant="8" id="tnf-St-Lbv"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="iAddressLabel" destination="jTp-uf-HTd" id="wQi-wX-F8d"/>
+                        <outlet property="iNameLabel" destination="AbA-dG-OPe" id="4nK-Tp-RYh"/>
+                        <outlet property="iTextField" destination="72K-Q9-ADe" id="m13-rA-4sd"/>
+                        <outlet property="infoView" destination="vlN-8O-ezj" id="VZu-rv-4Ts"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Btl-9c-uRf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

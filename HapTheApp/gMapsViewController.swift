@@ -20,6 +20,14 @@ class gMapsViewController: UIViewController {
     var newPlace: GMSPlace?
     var newPlaceMarker: GMSMarker?
     
+    
+    // Info Window Outlets
+    @IBOutlet weak var infoView: UIView!
+    @IBOutlet weak var iNameLabel: UILabel!
+    @IBOutlet weak var iAddressLabel: UILabel!
+    @IBOutlet weak var iTextField: UITextField!
+    
+    
     // An array tot hold the list of likely places.
     var likelyPlaces: [GMSPlace] = []
     
@@ -73,8 +81,26 @@ class gMapsViewController: UIViewController {
         view.insertSubview(mapView, at: 0)
         mapView.isHidden = true
         
+        infoView.isHidden = true
+        
         listLikelyPlaces()
     }
+    
+    
+    
+
+    
+    
+    
+//    override func touchesBegan(_ touches: Set<AnyHashable>, with event: UIEvent) {
+//        var touch: UITouch? = touches.first
+//
+//        if touch?.view != infoView {
+//            infoView.isHidden = true
+//        }
+//    }
+    
+    
     
     // MARK: Actions
     
@@ -84,6 +110,16 @@ class gMapsViewController: UIViewController {
         let autocompleteController = GMSAutocompleteViewController()
         autocompleteController.delegate = self
         present(autocompleteController, animated: true, completion: nil)
+    }
+    
+    @IBAction func addVisitedPlace(_ sender: Any) {
+        print("I've visited \(iNameLabel)")
+        hideInfoView()
+    }
+    
+    @IBAction func addPlaceToVisit(_ sender: Any) {
+        print("I want to visit \(iNameLabel)")
+        hideInfoView()
     }
     
     
@@ -108,6 +144,13 @@ class gMapsViewController: UIViewController {
                 }
             }
         })
+    }
+    
+    func hideInfoView() {
+        
+        iTextField.resignFirstResponder()
+        infoView.isHidden = true
+        
     }
     
     // Prepare the seque.
@@ -178,6 +221,8 @@ extension gMapsViewController: GMSAutocompleteViewControllerDelegate {
 
         addMarker(place: place)
         
+        showInfoWindow(place: place)
+        
     }
     
     func addMarker(place: GMSPlace) {
@@ -194,6 +239,19 @@ extension gMapsViewController: GMSAutocompleteViewControllerDelegate {
         newPlaceMarker!.map = mapView
         
         mapView.animate(toLocation: position)
+        
+    }
+    
+    func showInfoWindow(place: GMSPlace) {
+        
+        iNameLabel.text = ""
+        iAddressLabel.text = ""
+        iTextField.text = ""
+        
+        infoView.isHidden = false
+        iNameLabel.text = place.name
+        iAddressLabel.text = place.formattedAddress
+        iTextField.becomeFirstResponder()
         
     }
     
@@ -218,6 +276,14 @@ extension gMapsViewController: GMSAutocompleteViewControllerDelegate {
     
     
 }
+
+//extension gMapsViewController: UIGestureRecognizerDelegate {
+//
+//    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+//                           shouldReceive touch: UITouch) -> Bool {
+//        return (touch.view === self.view)
+//    }
+//}
 
 
 

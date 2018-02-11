@@ -42,7 +42,7 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return placePickerViewController.places.count
+        return mainVC.places.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -53,7 +53,7 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
             fatalError("The dequeued cell is not an instance of PlacesTableViewCell.")
         }
         
-        let placeSnapsot: DataSnapshot! = placePickerViewController.places[indexPath.row]
+        let placeSnapsot: DataSnapshot! = mainVC.places[indexPath.row]
         let place = placeSnapsot.value as! [String:String]
         
         // Calculate distance from current location:
@@ -89,24 +89,24 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
         
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             // delete item at indexPath
-            let placeSnapsot: DataSnapshot! = placePickerViewController.places[indexPath.row]
+            let placeSnapsot: DataSnapshot! = mainVC.places[indexPath.row]
             let key = placeSnapsot.key
             
-            placePickerViewController.places.remove(at: indexPath.row)
+            mainVC.places.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            placePickerViewController.ref.child("places").child(key).removeValue()
+            mainVC.ref.child("places").child(key).removeValue()
             
         }
         
         let share = UITableViewRowAction(style: .default, title: "Share") { (action, indexPath) in
             // TODO: share item at indexPath
-            print("I want to share: \(placePickerViewController.places[indexPath.row])")
+            print("I want to share: \(mainVC.places[indexPath.row])")
         }
         
         
         let visit = UITableViewRowAction(style: .default, title: "Visit") { (action, indexPath) in
             // TODO: mark as saved
-            print("I want to have visited: \(placePickerViewController.places[indexPath.row])")
+            print("I want to have visited: \(mainVC.places[indexPath.row])")
             
             let visitAlert = UIAlertController(title: "How was it?", message: nil, preferredStyle: .alert)
             

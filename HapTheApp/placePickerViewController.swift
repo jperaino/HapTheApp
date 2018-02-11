@@ -30,15 +30,14 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
     var resultSearchController:UISearchController? = nil
     var selectedPin: MKPlacemark? = nil
     
-    static var ref: DatabaseReference!
-    static var places: [DataSnapshot]! = []
+    
     static var placesLocal = [placeContainer]()
     var storageRef: StorageReference!
     var keyboardOnScreen = false
-    fileprivate var _refHandle: DatabaseHandle!
-    fileprivate var _authHandle: AuthStateDidChangeListenerHandle!
+//    fileprivate var _refHandle: DatabaseHandle!
+//    fileprivate var _authHandle: AuthStateDidChangeListenerHandle!
     
-    var user: User?
+//    var user: User?
     static var displayName = "Anonymous"
     static var userEmail = "todo@todo.com"
     var UID: String?
@@ -53,7 +52,7 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureAuth()
+        
         configurePlacesSearch()
         
         openButton.target = self.revealViewController()
@@ -61,44 +60,47 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
         
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
+//        self.populateMap(snapshot: snapshot)
+        self.sortArrayByDistance(array: mainVC.places, currentLocation: placePickerViewController.currentLocation)
+        
     }
 
-    // MARK: Config
-    
-    func configureAuth() {
-        
-        // listen for changes in the authorization state
-        _authHandle = Auth.auth().addStateDidChangeListener({ (auth: Auth, user: User?) in
-            //refresh data
-//            self.places.removeAll(keepingCapacity: false)
-            // TODO : Reload data
-            
-            // Check if there is a current user
-            if let activeUser = user {
-                if self.user != activeUser {
-                    self.user = activeUser
-                    self.signedInStatus(isSignedIn: true)
-                    
-                    placePickerViewController.userEmail = user!.email!
-                    placePickerViewController.displayName = user!.displayName!
-                    
-                    print(placePickerViewController.userEmail)
-                    print(placePickerViewController.displayName)
-                    
-                    
-                    let UID = user!.uid
-                    self.UID = UID
-                }
-            } else {
-                // user must sign in
-                self.signedInStatus(isSignedIn: false)
-                self.loginSession()
-            }
-        })
-        
-        print("updating back table names")
-        updateBackMenu()
-    }
+//    // MARK: Config
+//    
+//    func configureAuth() {
+//        
+//        // listen for changes in the authorization state
+//        _authHandle = Auth.auth().addStateDidChangeListener({ (auth: Auth, user: User?) in
+//            //refresh data
+////            self.places.removeAll(keepingCapacity: false)
+//            // TODO : Reload data
+//            
+//            // Check if there is a current user
+//            if let activeUser = user {
+//                if self.user != activeUser {
+//                    self.user = activeUser
+//                    self.signedInStatus(isSignedIn: true)
+//                    
+//                    placePickerViewController.userEmail = user!.email!
+//                    placePickerViewController.displayName = user!.displayName!
+//                    
+//                    print(placePickerViewController.userEmail)
+//                    print(placePickerViewController.displayName)
+//                    
+//                    
+//                    let UID = user!.uid
+//                    self.UID = UID
+//                }
+//            } else {
+//                // user must sign in
+//                self.signedInStatus(isSignedIn: false)
+//                self.loginSession()
+//            }
+//        })
+//        
+//        print("updating back table names")
+//        updateBackMenu()
+//    }
     
     func updateBackMenu() {
         
@@ -107,52 +109,11 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
         
     }
     
-    func loginSession() {
-        let authViewController = FUIAuth.defaultAuthUI()!.authViewController()
-        present(authViewController, animated: true, completion: nil)
-    }
+    
     
     // MARK: Sign In and Out
     
-    func signedInStatus(isSignedIn: Bool) {
-        
-        mapView.isHidden = !isSignedIn
-        if (isSignedIn) {
-            // TODO: remove background blur
-            configureDatabase()
-        }
-    }
     
-    func configureDatabase() {
-        placePickerViewController.ref = Database.database().reference()
-        
-        _refHandle = placePickerViewController.ref.child("places").observe(.childAdded) {(snapshot: DataSnapshot) in
-            placePickerViewController.places.append(snapshot)
-            self.populateMap(snapshot: snapshot)
-            self.sortArrayByDistance(array: placePickerViewController.places, currentLocation: placePickerViewController.currentLocation)
-            
-            
-//            self.messagesTable.insertRows(at: [IndexPath(row: self.messages.count - 1, section: 0)], with: .automatic)
-//            self.scrollToBottomMessage()
-            
-        }
-    }
-    
-    static func signMeOut() {
-        print("attempting signout")
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-            } catch let signOutError as NSError {
-            print("Error signing out: %@", signOutError)
-            }
-        placePickerViewController.places.removeAll(keepingCapacity: false)
-        placePickerViewController.placesLocal.removeAll(keepingCapacity: false)
-        
-        placePickerViewController.userEmail = ""
-        placePickerViewController.displayName = ""
-        
-        }
     
     
     
@@ -196,7 +157,7 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
         
         placePickerViewController.placesLocal = []
 
-        for item in placePickerViewController.places {
+        for item in mainVC.places {
             print("Making a local place")
             let localPlaceContainer = placeContainer(dataSnapshot: item)
             
@@ -207,7 +168,7 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
     
     func sortArrayByDistance(array: [DataSnapshot], currentLocation: CLLocation) {
         
-        placePickerViewController.places.sort(by: { helpers.calculateDistance(dataSnapshot: $0) < helpers.calculateDistance(dataSnapshot: $1) })
+        mainVC.places.sort(by: { helpers.calculateDistance(dataSnapshot: $0) < helpers.calculateDistance(dataSnapshot: $1) })
         print("Places snapshot array was sorted")
         
     }
@@ -262,12 +223,12 @@ class placePickerViewController: UIViewController, UINavigationControllerDelegat
         mdata[Constants.PlaceFields.placeLong] = placeLong
         mdata[Constants.PlaceFields.placeAddress] = placeAddress!
         
-        placePickerViewController.ref.child("places").childByAutoId().setValue(mdata)
+        mainVC.ref.child("places").childByAutoId().setValue(mdata)
     }
     
     func populateMap(snapshot: DataSnapshot) {
 //        mapView.remove(mapView.annotations as! MKOverlay)
-        print("map items count: " + String(placePickerViewController.places.count))
+        print("map items count: " + String(mainVC.places.count))
         
             let place = snapshot.value as! [String:String]
             

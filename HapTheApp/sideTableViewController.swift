@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class sideTableViewController: UITableViewController {
 
@@ -43,12 +45,21 @@ class sideTableViewController: UITableViewController {
         print("I'm doing this test action I hope you like it")
         
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func signMeOut() {
+        print("attempting signout")
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
+        }
+        
+        // TODO: Remove any data?
+        mainVC().loginSession()
     }
-
+    
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -97,7 +108,7 @@ class sideTableViewController: UITableViewController {
             print("about to do an action")
             
             if myAction == "signMeOut" {
-                placePickerViewController.signMeOut()
+                signMeOut()
             }
             
             print("did an action")

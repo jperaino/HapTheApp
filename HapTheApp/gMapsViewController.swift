@@ -193,6 +193,8 @@ extension gMapsViewController: GMSAutocompleteViewControllerDelegate {
         newPlaceMarker!.title = place.name
         newPlaceMarker!.map = mapView
         
+        mapView.animate(toLocation: position)
+        
     }
     
     func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {

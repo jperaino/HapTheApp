@@ -9,10 +9,11 @@
 import Foundation
 import GoogleMaps
 import GooglePlaces
+import Firebase
 
 extension gMapsViewController {
     
-    func addMarker(place: GMSPlace) {
+    func addTempMarker(place: GMSPlace) {
         
         // Remove existing marker if there's one
         if let currentMarker = newPlaceMarker {
@@ -25,15 +26,49 @@ extension gMapsViewController {
         newPlaceMarker!.title = place.name
         newPlaceMarker!.icon = #imageLiteral(resourceName: "pin-mark-blank")
         newPlaceMarker!.map = mapView
+        print(mapView)
         
         mapView.animate(toLocation: position)
     }
     
-    func addSavedMarker(place: GMSPlace) {
+    
+    func addSavedMarkers() {
+        print("adding saved markers...")
+        print(mainVC.places.count)
+        
+        for item in mainVC.places {
+            addMarker(snapshot: item)
+        }
+    }
+    
+    func addMarker(snapshot: DataSnapshot) {
+        
+        print("beginning to add marker...")
+        
+        let place = snapshot.value as! [String:String]
         
         
+        // Retrieve date from firebase
+        let placeLat = place[Constants.PlaceFields.placeLat]
+        let placeLong = place[Constants.PlaceFields.placeLong]
+        let placeName = place[Constants.PlaceFields.placeName]
+        
+        print("adding marker for: \(placeName!)")
+        
+        // Calculate values
+        let placeCoordinates = CLLocationCoordinate2D(latitude: Double(placeLat!)!, longitude: Double(placeLong!)!)
+    
+        // Create a new marker
+        let nPlaceMarker = GMSMarker()
+        nPlaceMarker.position = placeCoordinates
+        nPlaceMarker.title = placeName!
+        nPlaceMarker.icon = #imageLiteral(resourceName: "pin-mark-flag")
+        nPlaceMarker.map = mapView
+        print(mapView)
         
     }
+    
+    
     
     
     

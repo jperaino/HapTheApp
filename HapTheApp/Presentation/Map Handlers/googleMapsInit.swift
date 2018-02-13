@@ -41,6 +41,8 @@ extension gMapsViewController {
         view.insertSubview(mapView, at: 0)
         mapView.isHidden = true
         
+        addSavedMarkers()
+        
         
     }
 }

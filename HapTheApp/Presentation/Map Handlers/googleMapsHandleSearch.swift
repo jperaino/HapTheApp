@@ -45,9 +45,11 @@ extension gMapsViewController: GMSAutocompleteViewControllerDelegate {
         
         newPlace = place
         
-        addMarker(place: place)
+        addTempMarker(place: place)
         showInfoWindow(place: place)
 
+        
+        
     }
     
     

@@ -32,6 +32,7 @@ class gMapsViewController: UIViewController, UITableViewDelegate {
     
     @IBOutlet weak var openButton: UIBarButtonItem!
 
+    @IBOutlet weak var showSavedPinsButton: UIButton!
     
     // The currently selected place
     var selectedPlace: GMSPlace?
@@ -51,6 +52,8 @@ class gMapsViewController: UIViewController, UITableViewDelegate {
         openButton.target = self.revealViewController()
         openButton.action = Selector("revealToggle:")
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        
+        
         
     }
     
@@ -78,6 +81,15 @@ class gMapsViewController: UIViewController, UITableViewDelegate {
         newPlaceMarker!.icon = #imageLiteral(resourceName: "pin-mark-flag")
         sendPlace(status: "wanted")
     }
+    
+    
+    @IBAction func showSavedPins(_ sender: Any) {
+        
+        addSavedMarkers()
+        showSavedPinsButton.isHidden = true
+        
+    }
+    
     
     
     func hideInfoView() {

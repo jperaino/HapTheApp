@@ -9,6 +9,8 @@
 import UIKit
 import GoogleMaps
 import GooglePlaces
+import Firebase
+import FirebaseAuth
 
 class gMapsViewController: UIViewController {
 
@@ -67,12 +69,14 @@ class gMapsViewController: UIViewController {
         print("I've visited \(iNameLabel)")
         hideInfoView()
         newPlaceMarker!.icon = #imageLiteral(resourceName: "pin-mark-flag")
+        sendPlace(status: "visited")
     }
     
     @IBAction func addPlaceToVisit(_ sender: Any) {
         print("I want to visit \(iNameLabel)")
         hideInfoView()
         newPlaceMarker!.icon = #imageLiteral(resourceName: "pin-mark-flag")
+        sendPlace(status: "wanted")
     }
     
     
@@ -83,6 +87,45 @@ class gMapsViewController: UIViewController {
         infoView.isHidden = true
         
     }
+    
+    
+    func sendPlace(status: String) {
+        let nPlace = newPlace
+        
+        
+        // Collect data
+        let placeID = nPlace?.placeID
+        let UID = Auth.auth().currentUser?.uid
+        let timestamp = Date().toString(dateFormat: "yyyy/MMM/dd HH:mm:ss") // TODO MAKE THIS UNIFORM TIME ZONE?
+        let privacy = "global"
+        let blurb = "Blurb placeholder"
+        let status = status
+        
+        let placeName = nPlace?.name
+        let formattedAddress = nPlace?.formattedAddress
+        let placeLat = nPlace?.coordinate.latitude
+        let placeLong = nPlace?.coordinate.longitude
+        
+        // Package data
+        var mdata = [Constants.PlaceFields.PID: placeID! as String]
+        
+//        mdata[Constants.PlaceFields.PID] = placeID
+        mdata[Constants.PlaceFields.UID] = UID
+        mdata[Constants.PlaceFields.timestamp] = timestamp
+        mdata[Constants.PlaceFields.blurb] = blurb
+        mdata[Constants.PlaceFields.placeName] = placeName
+        mdata[Constants.PlaceFields.placeLat] = String(placeLat!) 
+        mdata[Constants.PlaceFields.placeLong] = String(placeLong!)
+        mdata[Constants.PlaceFields.placeAddress] = formattedAddress
+        mdata[Constants.PlaceFields.privacy] = privacy
+        mdata[Constants.PlaceFields.status] = status
+        
+        mainVC.ref.child("places").childByAutoId().setValue(mdata)
+    
+    }
+    
+    
+    
     
 }
 

@@ -48,28 +48,14 @@ extension gMapsViewController: GMSAutocompleteViewControllerDelegate {
         addMarker(place: place)
         
         showInfoWindow(place: place)
+
         
     }
     
-    func addMarker(place: GMSPlace) {
-        
-        // Remove existing marker if there's one
-        if let currentMarker = newPlaceMarker {
-            currentMarker.map = nil
-        }
-        
-        // Create a new marker
-        let position = place.coordinate
-        newPlaceMarker = GMSMarker(position: position)
-        newPlaceMarker!.title = place.name
-        newPlaceMarker!.icon = #imageLiteral(resourceName: "pin-mark-blank")
-        newPlaceMarker!.map = mapView
-        
-        mapView.animate(toLocation: position)
-        
-    }
+    
     
     func showInfoWindow(place: GMSPlace) {
+        print("showing info window")
         
         iNameLabel.text = ""
         iAddressLabel.text = ""

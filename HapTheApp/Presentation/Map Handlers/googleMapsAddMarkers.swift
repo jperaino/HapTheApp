@@ -12,6 +12,32 @@ import GooglePlaces
 
 extension gMapsViewController {
     
+    func addMarker(place: GMSPlace) {
+        
+        // Remove existing marker if there's one
+        if let currentMarker = newPlaceMarker {
+            currentMarker.map = nil
+        }
+        
+        // Create a new marker
+        let position = place.coordinate
+        newPlaceMarker = GMSMarker(position: position)
+        newPlaceMarker!.title = place.name
+        newPlaceMarker!.icon = #imageLiteral(resourceName: "pin-mark-blank")
+        newPlaceMarker!.map = mapView
+        
+        mapView.animate(toLocation: position)
+    }
+    
+    func addSavedMarker(place: GMSPlace) {
+        
+        
+        
+    }
+    
+    
+    
+    
     // Populate map with saved places.
     
     

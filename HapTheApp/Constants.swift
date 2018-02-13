@@ -19,6 +19,7 @@ struct Constants {
     // MARK: PlaceFields
     
     struct PlaceFields {
+        static let PID = "PID"
         static let UID = "UID"
         static let timestamp = "timestamp"
         static let blurb = "blurb"

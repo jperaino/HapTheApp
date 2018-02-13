@@ -123,6 +123,11 @@
 		53B0F245202CB764003816E1 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				53BFA19020268EF5000C416F /* AppDelegate.swift */,
+				53BFA19420268EF5000C416F /* Main.storyboard */,
+				53F2462320337E5800044AAD /* Back Menu */,
+				53F2462420337E7100044AAD /* Info Window */,
+				53F2461C2030FE7000044AAD /* Map Handlers */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -157,20 +162,12 @@
 			children = (
 				53B0F248202CB77C003816E1 /* Transitioning */,
 				53B0F245202CB764003816E1 /* Presentation */,
-				53BFA19020268EF5000C416F /* AppDelegate.swift */,
 				539C5B3E202FC396009A2394 /* mainVC.swift */,
-				53BFA19420268EF5000C416F /* Main.storyboard */,
-				53F246142030D2D500044AAD /* infoWindow.xib */,
-				53F246182030D4EB00044AAD /* infoWindow.swift */,
-				53F246162030D4A500044AAD /* infoWindowViewController.swift */,
 				53F246102030AF5600044AAD /* gMapsViewController.swift */,
 				53F246122030BA2B00044AAD /* PlacesViewController.swift */,
-				53B0F259202CC407003816E1 /* sideTableViewCell.swift */,
-				53B0F257202CC205003816E1 /* sideTableViewController.swift */,
 				53ECD1CC20293E58006BEDF0 /* PlaceTableViewCell.swift */,
 				53ECD1B42028AFBA006BEDF0 /* placePickerViewController.swift */,
 				53ECD1C6202925F9006BEDF0 /* Helpers.swift */,
-				53F2461C2030FE7000044AAD /* Map Handlers */,
 				53ECD1CA20293DB0006BEDF0 /* placesTableViewController.swift */,
 				53ECD1C420290827006BEDF0 /* Constants.swift */,
 				53BFA19220268EF5000C416F /* ViewController.swift */,
@@ -191,6 +188,25 @@
 				53F2461F203105E900044AAD /* googleMapsHandleSearch.swift */,
 			);
 			path = "Map Handlers";
+			sourceTree = "<group>";
+		};
+		53F2462320337E5800044AAD /* Back Menu */ = {
+			isa = PBXGroup;
+			children = (
+				53B0F259202CC407003816E1 /* sideTableViewCell.swift */,
+				53B0F257202CC205003816E1 /* sideTableViewController.swift */,
+			);
+			path = "Back Menu";
+			sourceTree = "<group>";
+		};
+		53F2462420337E7100044AAD /* Info Window */ = {
+			isa = PBXGroup;
+			children = (
+				53F246142030D2D500044AAD /* infoWindow.xib */,
+				53F246182030D4EB00044AAD /* infoWindow.swift */,
+				53F246162030D4A500044AAD /* infoWindowViewController.swift */,
+			);
+			path = "Info Window";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

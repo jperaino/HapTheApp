@@ -56,7 +56,7 @@ class gMapsViewController: UIViewController {
     // MARK: Actions
     
     @IBAction func addPlaceBySearch(_ sender: Any) {
-        
+   
         print("adding a place by search")
         let autocompleteController = GMSAutocompleteViewController()
         autocompleteController.delegate = self
@@ -77,6 +77,7 @@ class gMapsViewController: UIViewController {
     
     
     func hideInfoView() {
+        print("hiding info window")
         
         iTextField.resignFirstResponder()
         infoView.isHidden = true

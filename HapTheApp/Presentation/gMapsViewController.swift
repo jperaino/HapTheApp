@@ -12,7 +12,7 @@ import GooglePlaces
 import Firebase
 import FirebaseAuth
 
-class gMapsViewController: UIViewController {
+class gMapsViewController: UIViewController, UITableViewDelegate {
 
     var locationManager = CLLocationManager()
     
@@ -123,7 +123,6 @@ class gMapsViewController: UIViewController {
         mainVC.ref.child("places").childByAutoId().setValue(mdata)
     
     }
-    
     
     
     

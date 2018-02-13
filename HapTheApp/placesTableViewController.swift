@@ -21,6 +21,9 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        print("placesTableViewController did load")
+        
 //        placePickerViewController.sortArrayByDistance(array: mainVC.places, currentLocation: placePickerViewController.location)
 
         // Uncomment the following line to preserve selection between presentations
@@ -37,17 +40,18 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
 
     // MARK: - Table view data source
 
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 0
-//    }
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        print("number of places in places: \(mainVC.places.count)")
         return mainVC.places.count
+        
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("loading cells")
         
         let cellIdentifier = "placeCell"
         
@@ -84,6 +88,7 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
         cell.placeBlurbLabel.text = blurbText
         cell.placeDistanceLabel.text = distanceText
         
+        print("done loading cell")
         return cell
         
     }
@@ -138,6 +143,7 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
         return [delete, share, visit]
         
     }
+
     
     
 

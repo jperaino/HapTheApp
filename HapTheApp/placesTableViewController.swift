@@ -66,8 +66,8 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
 //        let distanceinMiles = helpers.calculateDistance(dataSnapshot: placeSnapsot)
         let distanceinMiles = 0.25
         let nameText = place[Constants.PlaceFields.placeName]
-        let cityText = place[Constants.PlaceFields.placeAddress]
-        let addressText = "placeholder"
+        let cityText = "placeholder"
+        let addressText = place[Constants.PlaceFields.placeAddress]
         let blurbText = "+ " + place[Constants.PlaceFields.blurb]!
         
         
@@ -79,7 +79,7 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
         } else if distanceinMiles < 25.0 {
             distanceText = String(format:"%.1f mi", distanceinMiles)
         } else {
-            distanceText = cityText!  // TODO: HANDLE UNWRAPPING SAFELY
+            distanceText = "Far"  // TODO: HANDLE UNWRAPPING SAFELY
         }
         
  

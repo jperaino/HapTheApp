@@ -24,6 +24,8 @@ extension gMapsViewController {
         
         placesClient = GMSPlacesClient.shared()
         
+        
+        
     }
     
     func createGoogleMap() {
@@ -41,7 +43,8 @@ extension gMapsViewController {
         view.insertSubview(mapView, at: 0)
         mapView.isHidden = true
         
-        addSavedMarkers()
+        
+    
         
         
     }
@@ -79,6 +82,8 @@ extension gMapsViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location: CLLocation = locations.last!
         print("Location: \(location)")
+        
+        currentLocation = location
         
         let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude, longitude: location.coordinate.longitude, zoom: zoomLevel)
         

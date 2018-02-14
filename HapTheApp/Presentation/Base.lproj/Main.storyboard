@@ -253,12 +253,30 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sWD-IA-5NV">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HEO-YE-rRU">
+                                <rect key="frame" x="164" y="318" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="fmO-Hg-1vd" kind="presentation" id="UUx-t8-7XS"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I'll automate this later but click below to go to the map" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ilu-ll-VUU">
+                                <rect key="frame" x="51" y="269" width="273" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Ilu-ll-VUU" firstAttribute="leading" secondItem="dXh-2Q-qzf" secondAttribute="leadingMargin" constant="35" id="6cR-8P-DsE"/>
+                            <constraint firstItem="HEO-YE-rRU" firstAttribute="centerY" secondItem="dXh-2Q-qzf" secondAttribute="centerY" id="8je-oT-TwW"/>
                             <constraint firstItem="sWD-IA-5NV" firstAttribute="top" secondItem="dXh-2Q-qzf" secondAttribute="top" id="MRy-Aw-4gl"/>
                             <constraint firstItem="sWD-IA-5NV" firstAttribute="leading" secondItem="dXh-2Q-qzf" secondAttribute="leading" id="NM0-06-A9v"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ilu-ll-VUU" secondAttribute="trailing" constant="35" id="NM0-V1-SjT"/>
+                            <constraint firstItem="HEO-YE-rRU" firstAttribute="top" secondItem="Ilu-ll-VUU" secondAttribute="bottom" constant="8" id="NuF-sH-2GM"/>
                             <constraint firstAttribute="trailing" secondItem="sWD-IA-5NV" secondAttribute="trailing" id="WJ4-g1-4ZE"/>
+                            <constraint firstItem="HEO-YE-rRU" firstAttribute="centerX" secondItem="dXh-2Q-qzf" secondAttribute="centerX" id="jOw-72-fh6"/>
                             <constraint firstItem="1Qp-22-cbq" firstAttribute="top" secondItem="sWD-IA-5NV" secondAttribute="bottom" id="s4y-Da-v1u"/>
                         </constraints>
                     </view>

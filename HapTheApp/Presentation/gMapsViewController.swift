@@ -103,14 +103,17 @@ class gMapsViewController: UIViewController, UITableViewDelegate {
     
     func sendPlace(status: String) {
         let nPlace = newPlace
-        
+        var blurb = "Placeholder"
         
         // Collect data
         let placeID = nPlace?.placeID
         let UID = Auth.auth().currentUser?.uid
         let timestamp = Date().toString(dateFormat: "yyyy/MMM/dd HH:mm:ss") // TODO MAKE THIS UNIFORM TIME ZONE?
         let privacy = "global"
-        let blurb = "Blurb placeholder"
+        if let blurbText = iTextField.text {
+            blurb = blurbText
+        }
+    
         let status = status
         
         let placeName = nPlace?.name

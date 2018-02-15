@@ -32,8 +32,24 @@ struct Constants {
         static let sentiment = "sentiment"
     }
     
-    
-    
+//    struct PlaceFields {
+//        static let PID = "PID"
+//        static let placeName = "placeName"
+//        static let placeLat = "placeLat"
+//        static let placeLong = "placeLong"
+//        static let placeAddress = "placeAddress"
+//        static let placeCity = "placeCity"
+//        static let userBundles = "userBundles"
+//    }
+//
+//    struct userBundleFields {
+//        static let UID = "UID"
+//        static let timestamp = "timestamp"
+//        static let privacy = "privacy"
+//        static let status = "status"
+//        static let sentiment = "sentiment"
+//        static let blurb = "blurb"
+//    }
     
     
 }

@@ -138,8 +138,12 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
             cell.placeDistanceLabel.textColor = visitedColor
             }
             
+            if place[Constants.PlaceFields.sentiment] == "good" {
+                cell.placeBlurbLabel.textColor = visitedGoodColor
+            } else if place[Constants.PlaceFields.sentiment] == "bad" {
+                cell.placeBlurbLabel.textColor = visitedBadColor
+            }
             
-            cell.placeBlurbLabel.textColor = visitedGoodColor
             
         } else {
             

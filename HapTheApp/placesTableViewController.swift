@@ -35,6 +35,9 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
             gMapsViewController().sortArraysByDistance()
         }
         
+        
+        
+        
         print("placesTableViewController did load")
         
 //        placePickerViewController.sortArrayByDistance(array: mainVC.places, currentLocation: placePickerViewController.location)
@@ -45,7 +48,32 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    
+    
+    
+    
 
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        var topOffset = UIEdgeInsetsMake(self.tableView.frame.size.height-146, 0, 0, 0)
+        print(topOffset)
+        
+        self.tableView.contentInset = topOffset
+        
+    }
+    
+    
+//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        
+//        let headerView = UIView()
+//        headerView.backgroundColor = UIColor.lightGray
+//        
+//        return headerView
+//    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -259,11 +287,12 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
     // MARK: ACTIONS
     
     @IBAction func segmentedControlActionChanged(_ sender: Any) {
+        
         print("filtering list")
+        gMapsViewController().sortArraysByDistance()
         placesTableView.reloadData()
         
     }
-    
     
     
 

@@ -27,6 +27,11 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Reorder arrays
+        if gMapsViewController.currentLocation != nil {
+            print("CURRENT LOCATION IS NOT NIL!!!")
+            gMapsViewController().sortArraysByDistance()
+        }
         
         print("placesTableViewController did load")
         
@@ -66,7 +71,6 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("loading cells")
         
         let cellIdentifier = "placeCell"
         
@@ -142,10 +146,7 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
             cell.placeBlurbLabel.textColor = wantedColor
             
         }
-        
-
-        
-        print("done loading cell")
+    
         return cell
         
     }

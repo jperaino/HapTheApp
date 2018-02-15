@@ -85,7 +85,12 @@ extension gMapsViewController: CLLocationManagerDelegate {
         
         gMapsViewController.currentLocation = location
         
-        print("Current Location in Init: \(gMapsViewController.currentLocation)")
+        // Reorder arrays
+        if gMapsViewController.currentLocation != nil {
+            print("CURRENT LOCATION IS NOT NIL!!!")
+            sortArraysByDistance()
+        }
+        
         
         
         let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude, longitude: location.coordinate.longitude, zoom: zoomLevel)

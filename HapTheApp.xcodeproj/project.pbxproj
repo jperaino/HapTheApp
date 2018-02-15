@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		427523EBD5DAD53B38E67A07 /* Pods_HapTheApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B94D96B6330703215CDD6EF5 /* Pods_HapTheApp.framework */; };
 		53028A062033E88800702724 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53028A052033E88800702724 /* StoreKit.framework */; };
+		539376042035F33500054ED7 /* sortPlaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539376032035F33500054ED7 /* sortPlaces.swift */; };
 		539C5B3F202FC396009A2394 /* mainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539C5B3E202FC396009A2394 /* mainVC.swift */; };
 		53B0F242202C8E6D003816E1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53B0F241202C8E6D003816E1 /* GoogleService-Info.plist */; };
 		53B0F244202C8ECE003816E1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53B0F243202C8ECE003816E1 /* Info.plist */; };
@@ -41,6 +42,7 @@
 		1227787007F5F6F7E72687F0 /* Pods-HapTheApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HapTheApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-HapTheApp/Pods-HapTheApp.release.xcconfig"; sourceTree = "<group>"; };
 		53028A052033E88800702724 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		53028A072033F31500702724 /* HapTheApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HapTheApp.entitlements; sourceTree = "<group>"; };
+		539376032035F33500054ED7 /* sortPlaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sortPlaces.swift; sourceTree = "<group>"; };
 		539C5B3E202FC396009A2394 /* mainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainVC.swift; sourceTree = "<group>"; };
 		53B0F241202C8E6D003816E1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Desktop/HapTheApp-master/HapTheApp/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		53B0F243202C8ECE003816E1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -105,6 +107,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		539376052035F33F00054ED7 /* Sort Places */ = {
+			isa = PBXGroup;
+			children = (
+				539376032035F33500054ED7 /* sortPlaces.swift */,
+			);
+			path = "Sort Places";
+			sourceTree = "<group>";
+		};
 		53B0F23D202C8D4E003816E1 /* Support */ = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +138,7 @@
 				53F2462320337E5800044AAD /* Back Menu */,
 				53F2462420337E7100044AAD /* Info Window */,
 				53F2461C2030FE7000044AAD /* Map Handlers */,
+				539376052035F33F00054ED7 /* Sort Places */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -410,6 +421,7 @@
 				53ECD1C7202925F9006BEDF0 /* Helpers.swift in Sources */,
 				53F2461B2030FDFF00044AAD /* googleMapsAddMarkers.swift in Sources */,
 				53B0F25A202CC407003816E1 /* sideTableViewCell.swift in Sources */,
+				539376042035F33500054ED7 /* sortPlaces.swift in Sources */,
 				53F246112030AF5600044AAD /* gMapsViewController.swift in Sources */,
 				53BFA19320268EF5000C416F /* ViewController.swift in Sources */,
 				53B0F258202CC205003816E1 /* sideTableViewController.swift in Sources */,

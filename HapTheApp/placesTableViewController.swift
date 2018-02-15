@@ -19,10 +19,12 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
     @IBOutlet weak var filterControl: UISegmentedControl!
     @IBOutlet var placesTableView: UITableView!
     
-    
+
     
     
     var distanceText = ""
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,10 +66,7 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
         default:
             return mainVC.privatePlaces.count
         }
-        
-        
-        
-        
+  
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

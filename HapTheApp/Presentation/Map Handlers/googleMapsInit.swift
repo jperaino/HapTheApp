@@ -89,6 +89,7 @@ extension gMapsViewController: CLLocationManagerDelegate {
         if gMapsViewController.currentLocation != nil {
             print("CURRENT LOCATION IS NOT NIL!!!")
             sortArraysByDistance()
+            reloadTable2()
         }
         
         

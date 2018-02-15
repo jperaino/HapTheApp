@@ -24,15 +24,22 @@ class gMapsViewController: UIViewController, UITableViewDelegate {
     var newPlaceMarker: GMSMarker?
     
     
+    var embeddedVC: placesTableViewController?
+    
+    
     // Info Window Outlets
     @IBOutlet weak var infoView: UIView!
     @IBOutlet weak var iNameLabel: UILabel!
     @IBOutlet weak var iAddressLabel: UILabel!
     @IBOutlet weak var iTextField: UITextField!
     
+    @IBOutlet weak var filterControl: UISegmentedControl!
+    
     @IBOutlet weak var openButton: UIBarButtonItem!
 
     @IBOutlet weak var showSavedPinsButton: UIButton!
+    
+ 
     
     // The currently selected place
     var selectedPlace: GMSPlace?
@@ -53,7 +60,23 @@ class gMapsViewController: UIViewController, UITableViewDelegate {
         openButton.action = Selector("revealToggle:")
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+            self.reloadTable2()
+        }
         
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if (segue.identifier == "embeddedPlacesTable") {
+            
+            let detailScene = segue.destination as! placesTableViewController
+            
+            self.embeddedVC = detailScene
+            
+            
+        }
         
     }
     
@@ -90,6 +113,16 @@ class gMapsViewController: UIViewController, UITableViewDelegate {
         
     }
     
+    @IBAction func reloadTable(_ sender: Any) {
+        
+        self.embeddedVC?.tableView.reloadData()
+        
+    }
+    
+    func reloadTable2() {
+        
+        self.embeddedVC?.tableView.reloadData()
+    }
     
     
     func hideInfoView() {

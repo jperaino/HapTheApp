@@ -162,27 +162,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7md-uw-w5B">
-                                <rect key="frame" x="119" y="617" width="136" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="oOi-nY-Eyi"/>
-                                </constraints>
-                                <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
-                                <state key="normal" title="Saved Places List">
-                                    <color key="titleShadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <segue destination="VgK-GE-d4u" kind="show" id="pu6-Jc-r2W"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVR-DL-VjD">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVR-DL-VjD">
                                 <rect key="frame" x="120.5" y="579" width="133" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -202,15 +182,24 @@
                                     <action selector="showSavedPins:" destination="9LW-k0-aDg" eventType="touchUpInside" id="1ig-kg-hbc"/>
                                 </connections>
                             </button>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mBV-5k-vhs">
+                                <rect key="frame" x="0.0" y="342" width="375" height="325"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="325" id="0Xm-6W-Jzm"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="VgK-GE-d4u" kind="embed" identifier="embeddedPlacesTable" id="fZ6-mo-FwJ"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="vlN-8O-ezj" firstAttribute="top" secondItem="iyd-jK-v3o" secondAttribute="bottom" constant="16" id="2sX-vX-9A2"/>
-                            <constraint firstItem="7md-uw-w5B" firstAttribute="top" secondItem="aVR-DL-VjD" secondAttribute="bottom" constant="8" id="5NG-JY-5Mp"/>
+                            <constraint firstItem="mBV-5k-vhs" firstAttribute="leading" secondItem="URU-iJ-YrN" secondAttribute="leading" id="FUC-V1-zje"/>
                             <constraint firstItem="vlN-8O-ezj" firstAttribute="leading" secondItem="URU-iJ-YrN" secondAttribute="leading" constant="8" id="GGH-5T-Jom"/>
-                            <constraint firstItem="6Qc-oh-6Pv" firstAttribute="top" secondItem="7md-uw-w5B" secondAttribute="bottom" constant="20" id="VmY-ja-XRH"/>
+                            <constraint firstItem="6Qc-oh-6Pv" firstAttribute="top" secondItem="mBV-5k-vhs" secondAttribute="bottom" id="Mgg-Mb-IoT"/>
                             <constraint firstItem="aVR-DL-VjD" firstAttribute="centerX" secondItem="URU-iJ-YrN" secondAttribute="centerX" id="Xot-k1-Cvh"/>
-                            <constraint firstItem="7md-uw-w5B" firstAttribute="centerX" secondItem="URU-iJ-YrN" secondAttribute="centerX" id="qfe-dk-rFr"/>
+                            <constraint firstAttribute="trailing" secondItem="mBV-5k-vhs" secondAttribute="trailing" id="aKa-3C-T9p"/>
                             <constraint firstAttribute="trailing" secondItem="vlN-8O-ezj" secondAttribute="trailing" constant="8" id="tnf-St-Lbv"/>
                         </constraints>
                     </view>
@@ -502,11 +491,12 @@
         <!--Places Table View Controller-->
         <scene sceneID="5TQ-TD-xhv">
             <objects>
-                <tableViewController storyboardIdentifier="PlacesTable" id="VgK-GE-d4u" customClass="placesTableViewController" customModule="HapTheApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="PlacesTable" modalPresentationStyle="currentContext" id="VgK-GE-d4u" customClass="placesTableViewController" customModule="HapTheApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="1h6-EF-3Vs">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="325"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="placeCell" rowHeight="80" id="4B8-Nl-ehL" customClass="PlaceTableViewCell" customModule="HapTheApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="80"/>
@@ -591,7 +581,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="heJ-fx-ouq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2953" y="1073"/>
+            <point key="canvasLocation" x="3079" y="1274"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="EMs-g2-uMJ">
@@ -625,7 +615,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qGi-UR-s1Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2954" y="324"/>
+            <point key="canvasLocation" x="3353" y="313"/>
         </scene>
     </scenes>
     <resources>

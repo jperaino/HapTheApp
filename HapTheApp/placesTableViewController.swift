@@ -107,7 +107,7 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
             if distanceinMiles < 0.1 {
                 let distanceInFeet = round(distanceInMiles/5280)
                     distanceText = String(format:"%d ft", distanceInFeet)
-            } else if distanceInMiles < 25.0 {
+            } else if distanceInMiles < 250.0 {
                 distanceText = String(format:"%.1f mi", distanceInMiles)
             } else {
                 distanceText = "Far"  // TODO: HANDLE UNWRAPPING SAFELY
@@ -186,6 +186,11 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
             // TODO: mark as saved
             print("I want to have visited: \(mainVC.places[indexPath.row])")
             
+            // Get place snapshot data
+            let placeSnapshot: DataSnapshot! = mainVC.places[indexPath.row]
+            let key = placeSnapshot.key
+            var mdata = placeSnapshot.value as! [String:String]
+            
             let visitAlert = UIAlertController(title: "How was it?", message: nil, preferredStyle: .alert)
             
             visitAlert.addTextField(configurationHandler: { (textField) in
@@ -193,11 +198,25 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
             })
             
             visitAlert.addAction(UIAlertAction(title: "😄", style: .default, handler: { _ in
+                
+                mdata[Constants.PlaceFields.status] = "visited"
+                mdata[Constants.PlaceFields.blurb] = visitAlert.textFields![0].text
+                mdata[Constants.PlaceFields.sentiment] = "good"
+                
+                mainVC.ref.child("places").child(key).setValue(mdata)
                 print("it was good")
             }))
+            
             visitAlert.addAction(UIAlertAction(title: "☹️", style: .default, handler: { _ in
+                
+                mdata[Constants.PlaceFields.status] = "visited"
+                mdata[Constants.PlaceFields.blurb] = visitAlert.textFields![0].text
+                mdata[Constants.PlaceFields.sentiment] = "bad"
+                
+                mainVC.ref.child("places").child(key).setValue(mdata)
                 print("it was bad")
             }))
+            
             visitAlert.addAction(UIAlertAction(title: "cancel", style: .cancel, handler: { _ in
                 print("nevermind")
             }))

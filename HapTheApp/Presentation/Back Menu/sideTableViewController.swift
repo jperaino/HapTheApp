@@ -28,10 +28,6 @@ class sideTableViewController: UITableViewController {
             backMenuItem(title: "Settings", action: nil),
             backMenuItem(title: "Logout", action: "signMeOut"),
             ]
-            
-        
-        
-        
         
     }
     
@@ -56,9 +52,7 @@ class sideTableViewController: UITableViewController {
             let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainVC") as! mainVC
             self.present(newViewController, animated: true, completion: nil)
             
-            
-            
-//            mainVC().loginSession()
+    
         } catch let signOutError as NSError {
             print("Error signing out: %@", signOutError)
         }

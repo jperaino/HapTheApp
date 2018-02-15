@@ -83,13 +83,17 @@ extension gMapsViewController: CLLocationManagerDelegate {
         let location: CLLocation = locations.last!
         print("Location: \(location)")
         
-        currentLocation = location
+        gMapsViewController.currentLocation = location
+        
+        print("Current Location in Init: \(gMapsViewController.currentLocation)")
+        
         
         let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude, longitude: location.coordinate.longitude, zoom: zoomLevel)
         
         if mapView.isHidden {
             mapView.isHidden = false
             mapView.camera = camera
+            
         } else {
             mapView.animate(to: camera)
         }

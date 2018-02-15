@@ -25,7 +25,7 @@ class helpers {
         let placeLong = place[Constants.PlaceFields.placeLong]
         let placeCoordinates = CLLocation(latitude: Double(placeLat!)!, longitude: Double(placeLong!)!)
         
-        let distanceInMeters = gMapsViewController().currentLocation!.distance(from: placeCoordinates)
+        let distanceInMeters = gMapsViewController.currentLocation!.distance(from: placeCoordinates)
         let distanceInMiles = distanceInMeters*0.000621371
 
         return distanceInMiles

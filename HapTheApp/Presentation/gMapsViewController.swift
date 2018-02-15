@@ -16,7 +16,7 @@ class gMapsViewController: UIViewController, UITableViewDelegate {
 
     var locationManager = CLLocationManager()
     
-    var currentLocation: CLLocation?
+    static var currentLocation: CLLocation?
     var mapView: GMSMapView!
     var placesClient: GMSPlacesClient!
     var zoomLevel: Float = 15.0

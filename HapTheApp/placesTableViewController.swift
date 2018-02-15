@@ -86,25 +86,31 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
         
         let place = placeSnapshot.value as! [String:String]
         
-        // Calculate distance from current location:
-//        let distanceinMiles = helpers.calculateDistance(dataSnapshot: placeSnapsot)
+        
         let distanceinMiles = 0.25
         let nameText = place[Constants.PlaceFields.placeName]
         let cityText = "placeholder"
         let addressText = place[Constants.PlaceFields.placeAddress]
         let blurbText = "+ " + place[Constants.PlaceFields.blurb]!
+        var distanceText = ""
         
+        print("current location: \(gMapsViewController.currentLocation)")
         
-        // Switch milage display based on distance
-        
-        if distanceinMiles < 0.1 {
-            let distanceInFeet = round(distanceinMiles/5280)
-            distanceText = String(format:"%d ft", distanceInFeet)
-        } else if distanceinMiles < 25.0 {
-            distanceText = String(format:"%.1f mi", distanceinMiles)
-        } else {
-            distanceText = "Far"  // TODO: HANDLE UNWRAPPING SAFELY
+        if gMapsViewController.currentLocation != nil {
+            
+            var distanceInMiles = helpers.calculateDistance(dataSnapshot: placeSnapshot)
+            
+            if distanceinMiles < 0.1 {
+                let distanceInFeet = round(distanceInMiles/5280)
+                    distanceText = String(format:"%d ft", distanceInFeet)
+            } else if distanceInMiles < 25.0 {
+                distanceText = String(format:"%.1f mi", distanceInMiles)
+            } else {
+                distanceText = "Far"  // TODO: HANDLE UNWRAPPING SAFELY
+            }
+            
         }
+    
         
  
         cell.placeNameLabel.text = nameText

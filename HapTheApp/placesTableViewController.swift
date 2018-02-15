@@ -16,6 +16,13 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
     
     // MARK - Properties
     
+    @IBOutlet weak var filterControl: UISegmentedControl!
+    
+    @IBOutlet var placesTableView: UITableView!
+    
+    
+    
+    
     var distanceText = ""
     
     override func viewDidLoad() {

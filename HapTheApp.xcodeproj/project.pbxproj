@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		427523EBD5DAD53B38E67A07 /* Pods_HapTheApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B94D96B6330703215CDD6EF5 /* Pods_HapTheApp.framework */; };
+		53028A062033E88800702724 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53028A052033E88800702724 /* StoreKit.framework */; };
 		539C5B3F202FC396009A2394 /* mainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539C5B3E202FC396009A2394 /* mainVC.swift */; };
 		53B0F242202C8E6D003816E1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53B0F241202C8E6D003816E1 /* GoogleService-Info.plist */; };
 		53B0F244202C8ECE003816E1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53B0F243202C8ECE003816E1 /* Info.plist */; };
@@ -38,6 +39,8 @@
 
 /* Begin PBXFileReference section */
 		1227787007F5F6F7E72687F0 /* Pods-HapTheApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HapTheApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-HapTheApp/Pods-HapTheApp.release.xcconfig"; sourceTree = "<group>"; };
+		53028A052033E88800702724 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		53028A072033F31500702724 /* HapTheApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HapTheApp.entitlements; sourceTree = "<group>"; };
 		539C5B3E202FC396009A2394 /* mainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainVC.swift; sourceTree = "<group>"; };
 		53B0F241202C8E6D003816E1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Desktop/HapTheApp-master/HapTheApp/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		53B0F243202C8ECE003816E1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -77,6 +80,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				427523EBD5DAD53B38E67A07 /* Pods_HapTheApp.framework in Frameworks */,
+				53028A062033E88800702724 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +90,7 @@
 		23C4B74B312686DA884F08E3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				53028A052033E88800702724 /* StoreKit.framework */,
 				B94D96B6330703215CDD6EF5 /* Pods_HapTheApp.framework */,
 			);
 			name = Frameworks;
@@ -98,13 +103,6 @@
 				1227787007F5F6F7E72687F0 /* Pods-HapTheApp.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		53B0F23C202C8D2D003816E1 /* Archive */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Archive;
 			sourceTree = "<group>";
 		};
 		53B0F23D202C8D4E003816E1 /* Support */ = {
@@ -162,6 +160,7 @@
 		53BFA18F20268EF5000C416F /* HapTheApp */ = {
 			isa = PBXGroup;
 			children = (
+				53028A072033F31500702724 /* HapTheApp.entitlements */,
 				53B0F248202CB77C003816E1 /* Transitioning */,
 				53B0F245202CB764003816E1 /* Presentation */,
 				53F246122030BA2B00044AAD /* PlacesViewController.swift */,
@@ -175,7 +174,6 @@
 				53B0F23D202C8D4E003816E1 /* Support */,
 				53B0F241202C8E6D003816E1 /* GoogleService-Info.plist */,
 				53B0F243202C8ECE003816E1 /* Info.plist */,
-				53B0F23C202C8D2D003816E1 /* Archive */,
 			);
 			path = HapTheApp;
 			sourceTree = "<group>";
@@ -246,6 +244,14 @@
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -545,6 +551,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = HapTheApp/HapTheApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4475DMY33A;
 				INFOPLIST_FILE = HapTheApp/Info.plist;
@@ -564,6 +571,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = HapTheApp/HapTheApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4475DMY33A;
 				INFOPLIST_FILE = HapTheApp/Info.plist;

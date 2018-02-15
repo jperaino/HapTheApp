@@ -151,9 +151,21 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
             let placeSnapsot: DataSnapshot! = mainVC.places[indexPath.row]
             let key = placeSnapsot.key
             
-            mainVC.places.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            mainVC.ref.child("places").child(key).removeValue()
+            let deleteAlert = UIAlertController(title: "Delete?", message: "This cannot be undone", preferredStyle: .alert)
+            
+            deleteAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+                print("User Cancelled Delete")
+            }))
+            
+            // TODO: ADD LISTENER FOR DELETED THINGS AND DELETE FROM BOTH GLOBAL AND PERSONAL LISTS
+            deleteAlert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
+                print("User is deleting")
+                mainVC.places.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                mainVC.ref.child("places").child(key).removeValue()
+            }))
+            
+            self.present(deleteAlert, animated: true, completion: nil)
             
         }
         

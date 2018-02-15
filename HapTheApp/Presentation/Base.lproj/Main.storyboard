@@ -579,6 +579,9 @@
                                 <segment title="" image="ic_group"/>
                                 <segment title="" image="ic_person"/>
                             </segments>
+                            <connections>
+                                <action selector="segmentedControlActionChanged:" destination="VgK-GE-d4u" eventType="valueChanged" id="nxS-hE-YpW"/>
+                            </connections>
                         </segmentedControl>
                     </navigationItem>
                     <connections>

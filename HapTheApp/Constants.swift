@@ -29,6 +29,7 @@ struct Constants {
         static let placeAddress = "placeAddress"
         static let privacy = "privacy"
         static let status = "status"
+        static let good = "good"
     }
     
     

@@ -17,7 +17,6 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
     // MARK - Properties
     
     @IBOutlet weak var filterControl: UISegmentedControl!
-    
     @IBOutlet var placesTableView: UITableView!
     
     
@@ -53,7 +52,16 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("number of places in places: \(mainVC.places.count)")
-        return mainVC.places.count
+        
+        switch  filterControl.selectedSegmentIndex {
+        case 0:
+            return mainVC.places.count
+        default:
+            return mainVC.privatePlaces.count
+        }
+        
+        
+        
         
     }
 
@@ -66,8 +74,17 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
             fatalError("The dequeued cell is not an instance of PlacesTableViewCell.")
         }
         
-        let placeSnapsot: DataSnapshot! = mainVC.places[indexPath.row]
-        let place = placeSnapsot.value as! [String:String]
+        var placeSnapshot: DataSnapshot!
+        
+        switch filterControl.selectedSegmentIndex {
+            
+        case 0:
+            placeSnapshot = mainVC.places[indexPath.row]
+        default:
+            placeSnapshot = mainVC.privatePlaces[indexPath.row]
+        }
+        
+        let place = placeSnapshot.value as! [String:String]
         
         // Calculate distance from current location:
 //        let distanceinMiles = helpers.calculateDistance(dataSnapshot: placeSnapsot)
@@ -94,6 +111,33 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
         cell.placeAddressLabel.text = addressText
         cell.placeBlurbLabel.text = blurbText
         cell.placeDistanceLabel.text = distanceText
+        
+        let visitedColor = UIColor.gray
+        let wantedColor = UIColor.blue
+        let visitedGoodColor = UIColor.green
+        let visitedBadColor = UIColor.magenta
+        
+        
+        // Change colors
+        if place[Constants.PlaceFields.status] == "visited" {
+            
+            if place[Constants.PlaceFields.UID] == mainVC.userID {
+            
+            cell.placeNameLabel.textColor = visitedColor
+            cell.placeAddressLabel.textColor = visitedColor
+            cell.placeDistanceLabel.textColor = visitedColor
+            }
+            
+            
+            cell.placeBlurbLabel.textColor = visitedGoodColor
+            
+        } else {
+            
+            cell.placeBlurbLabel.textColor = wantedColor
+            
+        }
+        
+
         
         print("done loading cell")
         return cell
@@ -151,6 +195,15 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
         
     }
 
+    
+    // MARK: ACTIONS
+    
+    @IBAction func segmentedControlActionChanged(_ sender: Any) {
+        print("filtering list")
+        placesTableView.reloadData()
+        
+    }
+    
     
     
 

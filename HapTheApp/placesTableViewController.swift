@@ -190,9 +190,28 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
         share.backgroundColor = UIColor.lightGray
         visit.backgroundColor = UIColor.blue
      
+        // THIS IS COPIED FROM ABOVE
+        var placeSnapshot: DataSnapshot!
+        switch filterControl.selectedSegmentIndex {
+            
+        case 0:
+            placeSnapshot = mainVC.places[indexPath.row]
+        default:
+            placeSnapshot = mainVC.privatePlaces[indexPath.row]
+        }
         
-        return [delete, share, visit]
+        let place = placeSnapshot.value as! [String:String]
+        //////////////////////////////////////////////////////////
         
+        
+        
+        switch place[Constants.PlaceFields.UID] == mainVC.userID {
+        case false:
+            return [share, visit]
+        default:
+            return [delete, share, visit]
+        }
+    
     }
 
     

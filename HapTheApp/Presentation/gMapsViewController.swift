@@ -194,10 +194,10 @@ class gMapsViewController: UIViewController, UITableViewDelegate {
     
         let status = status
         
-        let placeName = nPlace?.name
-        let formattedAddress = nPlace?.formattedAddress
-        let placeLat = nPlace?.coordinate.latitude
-        let placeLong = nPlace?.coordinate.longitude
+//        let placeName = nPlace?.name
+//        let formattedAddress = nPlace?.formattedAddress
+//        let placeLat = nPlace?.coordinate.latitude
+//        let placeLong = nPlace?.coordinate.longitude
         
         // Package data
         var mdata = [Constants.PlaceFields.PID: placeID! as String]
@@ -205,32 +205,34 @@ class gMapsViewController: UIViewController, UITableViewDelegate {
         let ndata = mdata
         
 //        mdata[Constants.PlaceFields.PID] = placeID
-        mdata[Constants.PlaceFields.UID] = UID
-        mdata[Constants.PlaceFields.timestamp] = timestamp
-        mdata[Constants.PlaceFields.blurb] = blurb
-        mdata[Constants.PlaceFields.placeName] = placeName
-        mdata[Constants.PlaceFields.placeLat] = String(placeLat!) 
-        mdata[Constants.PlaceFields.placeLong] = String(placeLong!)
-        mdata[Constants.PlaceFields.placeAddress] = formattedAddress
-        mdata[Constants.PlaceFields.privacy] = privacy
-        mdata[Constants.PlaceFields.status] = status
-        
-        mainVC.ref.child("places").childByAutoId().setValue(mdata)
+//        mdata[Constants.PlaceFields.UID] = UID
+//        mdata[Constants.PlaceFields.timestamp] = timestamp
+//        mdata[Constants.PlaceFields.blurb] = blurb
+//        mdata[Constants.PlaceFields.placeName] = placeName
+//        mdata[Constants.PlaceFields.placeLat] = String(placeLat!)
+//        mdata[Constants.PlaceFields.placeLong] = String(placeLong!)
+//        mdata[Constants.PlaceFields.placeAddress] = formattedAddress
+//        mdata[Constants.PlaceFields.privacy] = privacy
+//        mdata[Constants.PlaceFields.status] = status
+//
+//        mainVC.ref.child("places").childByAutoId().setValue(mdata)
         
         
         // MARK - NEW DATA STRUCTURE
         // TODO - Check if place already exists
-        mainVC.ref.child("placeIDs").childByAutoId().setValue(ndata)
         
-        var bdata = [Constants.blurbFields.PID: placeID! as String]
+        mainVC.ref.child("placeIDs").child(placeID! as String).setValue(mdata)
+        
+        var bdata = [Constants.blurbFields.timestamp: Firebase.ServerValue.timestamp()] as [String : Any]
+        
+        bdata[Constants.blurbFields.PID] = placeID! as String
         bdata[Constants.blurbFields.UID] = UID
-        bdata[Constants.blurbFields.timestamp] = timestamp
         bdata[Constants.blurbFields.privacy] = "private"
         bdata[Constants.blurbFields.comment] = blurb
         bdata[Constants.blurbFields.sentiment] = status
         
         mainVC.refUser.child("blurbs").childByAutoId().setValue(bdata)
-        
+
     }
     
     

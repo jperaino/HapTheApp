@@ -24,7 +24,7 @@ class HapPlace: NSObject {
     var blurbs: [HapBlurb]!
     
     
-    // MARK: Initialize from Firebase Snapshot
+    // MARK: Initialize from a PlaceID
     init(gPID: GMSPlace) {
         let timestamp = NSDate() as! Date
     

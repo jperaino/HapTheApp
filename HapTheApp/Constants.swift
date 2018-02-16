@@ -42,14 +42,15 @@ struct Constants {
 //        static let userBundles = "userBundles"
 //    }
 //
-//    struct userBundleFields {
-//        static let UID = "UID"
-//        static let timestamp = "timestamp"
-//        static let privacy = "privacy"
-//        static let status = "status"
-//        static let sentiment = "sentiment"
-//        static let blurb = "blurb"
-//    }
+    struct blurbFields {
+        static let PID = "PID"
+        static let UID = "UID"
+        static let timestamp = "timestamp"
+        static let privacy = "privacy"
+        static let status = "status"
+        static let comment = "comment"
+        static let sentiment = "sentiment"
+    }
     
     
 }

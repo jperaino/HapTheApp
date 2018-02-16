@@ -115,13 +115,8 @@ class mainVC: UIViewController {
             
             if let placeID = place[Constants.PlaceFields.PID] {
                 print("starting up placefinding with \(placeID)")
-                self.lookUpPID(placeID: placeID)
+                self.addPlaceIfNew(placeID: placeID)
             }
-            
-            
-            
-            
-            
             
             if place[Constants.PlaceFields.UID] == self.user?.uid {
                 print("appending to private places")
@@ -158,7 +153,23 @@ class mainVC: UIViewController {
     }
     
     
+    func addPlaceIfNew(placeID: String) {
+        
+        // TODO: Confirm that this is only loading places if the array is empty there. 
+        if mainVC.hapPlaces[placeID] != nil {
+            print("\(mainVC.hapPlaces[placeID]?.name) is already in Hap Place Array")
+        } else {
+            self.lookUpPID(placeID: placeID)
+        }
+        
+        return
+        
+    }
+    
+    
+    
     func lookUpPID(placeID: String) {
+        
         self.placesClient.lookUpPlaceID(placeID, callback: { (place, error) in
             if let error = error {
                 print("lookup place id query error: \(error.localizedDescription)")

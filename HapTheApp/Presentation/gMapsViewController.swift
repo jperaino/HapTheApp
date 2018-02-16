@@ -46,7 +46,7 @@ class gMapsViewController: UIViewController, UITableViewDelegate {
         
         switch sliderState {
         case 0:
-            placesTableHeightConstraint.constant = 400
+            placesTableHeightConstraint.constant = 400 // TODO: MAKE THIS NUMBER PARAMETRIC FOR DIFFERENT DEVICES
             sliderState = 1
             sliderToggleButton.setImage(#imageLiteral(resourceName: "ic_map"), for: .normal)
         default:

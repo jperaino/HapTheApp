@@ -45,6 +45,11 @@ extension gMapsViewController: GMSAutocompleteViewControllerDelegate {
         
         newPlace = place
         
+        // Lower list if it's raised
+        if sliderState == 1 {
+            slideTableView()
+        }
+        
         addTempMarker(place: place)
         showInfoWindow(place: place)
 

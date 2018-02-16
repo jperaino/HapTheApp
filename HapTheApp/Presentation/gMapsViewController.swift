@@ -23,9 +23,50 @@ class gMapsViewController: UIViewController, UITableViewDelegate {
     var newPlace: GMSPlace?
     var newPlaceMarker: GMSMarker?
     
+    @IBOutlet weak var sliderToggleButton: UIButton!
+    var sliderState = 0
+    
+    
+    @IBOutlet weak var placesTableHeightConstraint: NSLayoutConstraint!
     
     var embeddedVC: placesTableViewController?
     
+    @IBOutlet var totalView: UIView!
+//    @IBAction func slideTableUp(_ sender: Any) {
+//        print("height of the table is: \(placesTableHeightConstraint.constant)")
+//        
+//        
+//        
+//        
+//        
+//    }
+    
+    
+    func slideTableView() {
+        
+        switch sliderState {
+        case 0:
+            placesTableHeightConstraint.constant = 400
+            sliderState = 1
+            sliderToggleButton.setImage(#imageLiteral(resourceName: "ic_map"), for: .normal)
+        default:
+            placesTableHeightConstraint.constant = 146
+            sliderState = 0
+            sliderToggleButton.setImage(#imageLiteral(resourceName: "ic_list"), for: .normal)
+        }
+        
+        UIView.animate(withDuration: 0.5) {
+            self.totalView.layoutIfNeeded()
+        }
+
+    }
+    
+    
+    @IBAction func toggleSlide(_ sender: Any) {
+        
+        slideTableView()
+        
+    }
     
     // Info Window Outlets
     @IBOutlet weak var infoView: UIView!
@@ -39,7 +80,8 @@ class gMapsViewController: UIViewController, UITableViewDelegate {
 
     @IBOutlet weak var showSavedPinsButton: UIButton!
     
- 
+    @IBOutlet weak var mapHolder: UIView!
+    
     
     // The currently selected place
     var selectedPlace: GMSPlace?
@@ -64,6 +106,7 @@ class gMapsViewController: UIViewController, UITableViewDelegate {
             self.reloadTable2()
         }
         
+       
         
     }
     

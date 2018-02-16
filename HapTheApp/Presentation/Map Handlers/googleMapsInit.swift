@@ -34,19 +34,14 @@ extension gMapsViewController {
         
         // Create a map.
         let camera = GMSCameraPosition.camera(withLatitude: defaultLocation.coordinate.latitude, longitude: defaultLocation.coordinate.longitude, zoom: zoomLevel)
-        mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
+        mapView = GMSMapView.map(withFrame: self.mapHolder.bounds, camera: camera)
         mapView.settings.myLocationButton = true
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.isMyLocationEnabled = true
         
         // Add the map to the view, hide it until we have a location update.
-        view.insertSubview(mapView, at: 0)
+        mapHolder.insertSubview(mapView, at: 0)
         mapView.isHidden = true
-        
-        
-    
-        
-        
     }
 }
 

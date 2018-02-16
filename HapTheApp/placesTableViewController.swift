@@ -19,9 +19,6 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
     @IBOutlet weak var filterControl: UISegmentedControl!
     @IBOutlet var placesTableView: UITableView!
     
-
-    
-    
     var distanceText = ""
     
     
@@ -49,27 +46,23 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
-    
-    
-    
-    
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        var topOffset = UIEdgeInsetsMake(self.tableView.frame.size.height-146, 0, 0, 0)
-        print(topOffset)
-        
-        self.tableView.contentInset = topOffset
+//        var topOffset = UIEdgeInsetsMake(self.tableView.frame.size.height-146, 0, 0, 0)
+//        print(topOffset)
+//        
+//        self.tableView.contentInset = topOffset
         
     }
     
     
 //    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        
+//
 //        let headerView = UIView()
 //        headerView.backgroundColor = UIColor.lightGray
-//        
+//
 //        return headerView
 //    }
     
@@ -294,6 +287,7 @@ class placesTableViewController: UITableViewController, UINavigationControllerDe
         
     }
     
+
     
 
 }

@@ -114,18 +114,11 @@ class mainVC: UIViewController {
         
         _refHandle = mainVC.refUser.child("blurbs").observe(.childAdded) {(snapshot: DataSnapshot) in
             let newBlurb = HapBlurb(snapshot: snapshot)
-            
-            print("check these")
-            print(newBlurb.blurbID)
-            print(newBlurb.comment)
-            print(newBlurb.sentiment)
-            
-            print("got a new blurb: \(newBlurb.blurbID)")
+            print("received a new blurb: \(newBlurb.blurbID)")
             
             mainVC.hapBlurbs[newBlurb.blurbID] = newBlurb
             print("Number of blurbs is now: \(mainVC.hapBlurbs.count)")
             self.addPlaceIfNew(placeID: newBlurb.placeID)
-            
         }
     
             
@@ -187,6 +180,7 @@ class mainVC: UIViewController {
             self.lookUpPID(placeID: placeID)
         }
         
+        // TODO: Reload tableview?
         return
         
     }

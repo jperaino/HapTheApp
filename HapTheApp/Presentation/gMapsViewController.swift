@@ -152,20 +152,11 @@ class gMapsViewController: UIViewController, UITableViewDelegate {
     
     
     @IBAction func showSavedPins(_ sender: Any) {
-        
         addSavedMarkers()
         showSavedPinsButton.isHidden = true
-        
-    }
-    
-    @IBAction func reloadTable(_ sender: Any) {
-        
-        self.embeddedVC?.tableView.reloadData()
-        
     }
     
     func reloadTable2() {
-        
         self.embeddedVC?.tableView.reloadData()
     }
     
@@ -175,68 +166,35 @@ class gMapsViewController: UIViewController, UITableViewDelegate {
         
         iTextField.resignFirstResponder()
         infoView.isHidden = true
-        
     }
     
     
     func sendPlace(status: String) {
-        let nPlace = newPlace
-        var blurb = "Placeholder"
         
         // Collect data
-        let placeID = nPlace?.placeID
-        let UID = Auth.auth().currentUser?.uid
-        let timestamp = Date().toString(dateFormat: "yyyy/MMM/dd HH:mm:ss") // TODO MAKE THIS UNIFORM TIME ZONE?
-        let privacy = "global"
-        if let blurbText = iTextField.text {
-            blurb = blurbText
+        let placeID = newPlace?.placeID
+        var comment: String!
+
+        if let commentText = iTextField.text {
+            comment = commentText
+        } else {
+            comment = ""
         }
-    
-        let status = status
         
-//        let placeName = nPlace?.name
-//        let formattedAddress = nPlace?.formattedAddress
-//        let placeLat = nPlace?.coordinate.latitude
-//        let placeLong = nPlace?.coordinate.longitude
-        
-        // Package data
-        var mdata = [Constants.PlaceFields.PID: placeID! as String]
-        
-        let ndata = mdata
-        
-//        mdata[Constants.PlaceFields.PID] = placeID
-//        mdata[Constants.PlaceFields.UID] = UID
-//        mdata[Constants.PlaceFields.timestamp] = timestamp
-//        mdata[Constants.PlaceFields.blurb] = blurb
-//        mdata[Constants.PlaceFields.placeName] = placeName
-//        mdata[Constants.PlaceFields.placeLat] = String(placeLat!)
-//        mdata[Constants.PlaceFields.placeLong] = String(placeLong!)
-//        mdata[Constants.PlaceFields.placeAddress] = formattedAddress
-//        mdata[Constants.PlaceFields.privacy] = privacy
-//        mdata[Constants.PlaceFields.status] = status
-//
-//        mainVC.ref.child("places").childByAutoId().setValue(mdata)
-        
-        
-        // MARK - NEW DATA STRUCTURE
-        // TODO - Check if place already exists
-        
+        // Package and upload PID to Firebase
+        let mdata = [Constants.PlaceFields.PID: placeID! as String]
         mainVC.ref.child("placeIDs").child(placeID! as String).setValue(mdata)
         
+        // Package and upload Blurb to Firebase
         var bdata = [Constants.blurbFields.timestamp: Firebase.ServerValue.timestamp()] as [String : Any]
-        
         bdata[Constants.blurbFields.PID] = placeID! as String
-        bdata[Constants.blurbFields.UID] = UID
+        bdata[Constants.blurbFields.UID] = Auth.auth().currentUser?.uid
         bdata[Constants.blurbFields.privacy] = "private"
-        bdata[Constants.blurbFields.comment] = blurb
+        bdata[Constants.blurbFields.comment] = comment
         bdata[Constants.blurbFields.sentiment] = status
         
         mainVC.refUser.child("blurbs").childByAutoId().setValue(bdata)
-
     }
-    
-    
-    
     
 }
 

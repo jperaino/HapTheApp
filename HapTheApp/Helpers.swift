@@ -31,9 +31,6 @@ class helpers {
         return distanceInMiles
     }
     
-    
-    
-
 }
 
 

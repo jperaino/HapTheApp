@@ -106,6 +106,8 @@ class gMapsViewController: UIViewController, UITableViewDelegate {
             self.reloadTable2()
         }
         
+        lookUpPID(placeID: "ChIJRZ8j405ZwokRPr8lcHUUwbM")
+        
        
         
     }
@@ -215,6 +217,46 @@ class gMapsViewController: UIViewController, UITableViewDelegate {
     
     }
     
+    func lookUpPID(placeID: String) {
+        var gPlace: GMSPlace?
+        
+        
+        placesClient.lookUpPlaceID(placeID, callback: { (place, error) in
+            if let error = error {
+                print("lookup place id query error: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let place = place else {
+                print("No place details for \(placeID)")
+                return
+            }
+            
+            
+            print("FOUND A PLACE: \(place.name)")
+            self.initTest(place: place)
+            
+        })
+        
+        
+    }
+    
+    
+    func initTest(place: GMSPlace) {
+
+        let happyPlace = HapPlace(gPID: place)
+
+        print(".........")
+        print(happyPlace.name)
+        print(happyPlace.placeID)
+        print(happyPlace.address)
+        print(happyPlace.city)
+        print(happyPlace.blurbs)
+        print(happyPlace.coordinates)
+        print(happyPlace.dateDownloaded)
+        print("!!!!!!!!!")
+
+    }
     
     
 }

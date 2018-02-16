@@ -26,7 +26,9 @@ class mainVC: UIViewController {
     static var refUser: DatabaseReference!
     static var places: [DataSnapshot]! = []
     static var privatePlaces: [DataSnapshot]! = []
+    
     static var hapPlaces = [String: HapPlace]()
+    static var hapBlurbs = [String: HapBlurb]()
     
     var placesClient: GMSPlacesClient!
     
@@ -110,6 +112,29 @@ class mainVC: UIViewController {
         mainVC.refUser = mainVC.ref.child("users").child((user?.uid)!)
         placesClient = GMSPlacesClient.shared()
         
+        _refHandle = mainVC.refUser.child("blurbs").observe(.childAdded) {(snapshot: DataSnapshot) in
+            let newBlurb = HapBlurb(snapshot: snapshot)
+            
+            print("check these")
+            print(newBlurb.blurbID)
+            print(newBlurb.comment)
+            print(newBlurb.sentiment)
+            
+            print("got a new blurb: \(newBlurb.blurbID)")
+            
+            mainVC.hapBlurbs[newBlurb.blurbID] = newBlurb
+            print("Number of blurbs is now: \(mainVC.hapBlurbs.count)")
+            self.addPlaceIfNew(placeID: newBlurb.placeID)
+            
+        }
+    
+            
+            
+            
+            
+            
+        
+        
         _refHandle = mainVC.ref.child("places").observe(.childAdded) {(snapshot: DataSnapshot) in
             mainVC.places.append(snapshot)
             
@@ -169,6 +194,8 @@ class mainVC: UIViewController {
     
     
     func lookUpPID(placeID: String) {
+        
+        print(placeID)
         
         self.placesClient.lookUpPlaceID(placeID, callback: { (place, error) in
             if let error = error {

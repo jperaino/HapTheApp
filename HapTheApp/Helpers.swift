@@ -30,7 +30,6 @@ class helpers {
 
         return distanceInMiles
     }
-    
 }
 
 

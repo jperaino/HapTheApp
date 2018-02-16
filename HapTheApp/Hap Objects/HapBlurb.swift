@@ -22,13 +22,15 @@ class HapBlurb: NSObject {
     init(snapshot: DataSnapshot) {
         self.blurbID = snapshot.key
         
-        guard let value = snapshot.value as? [String: String] else { return }
+        print(snapshot.value)
         
-        self.placeID = value[Constants.blurbFields.PID]!
-        self.comment = value[Constants.blurbFields.comment]!
+        guard let value = snapshot.value as? [String: Any] else { return }
+        
+        self.placeID = value[Constants.blurbFields.PID] as! String
+        self.comment = value[Constants.blurbFields.comment] as! String
         self.postDate = NSDate() as Date! // MARK: TODO - Add post date
-        self.userID = value[Constants.blurbFields.UID]!
-        self.sentiment = value[Constants.blurbFields.sentiment]!
+        self.userID = value[Constants.blurbFields.UID] as! String
+        self.sentiment = value[Constants.blurbFields.sentiment] as! String
     }
     
     // Initialize from User Action

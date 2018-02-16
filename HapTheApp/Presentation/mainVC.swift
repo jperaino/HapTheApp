@@ -23,6 +23,7 @@ class mainVC: UIViewController {
     static var userID: String?
     
     static var ref: DatabaseReference!
+    static var refUser: DatabaseReference!
     static var places: [DataSnapshot]! = []
     static var privatePlaces: [DataSnapshot]! = []
     static var hapPlaces = [String: HapPlace]()
@@ -106,6 +107,7 @@ class mainVC: UIViewController {
         // Configure the database.
         
         mainVC.ref = Database.database().reference()
+        mainVC.refUser = mainVC.ref.child("users").child((user?.uid)!)
         placesClient = GMSPlacesClient.shared()
         
         _refHandle = mainVC.ref.child("places").observe(.childAdded) {(snapshot: DataSnapshot) in
@@ -124,8 +126,6 @@ class mainVC: UIViewController {
                 print("privatePlaces size: \(mainVC.privatePlaces.count)")
                 
             }
-            
-            
             
             gMapsViewController().sortArraysByDistance()
             gMapsViewController().embeddedVC?.tableView.reloadData()

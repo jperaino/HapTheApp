@@ -47,7 +47,6 @@ struct Constants {
         static let UID = "UID"
         static let timestamp = "timestamp"
         static let privacy = "privacy"
-        static let status = "status"
         static let comment = "comment"
         static let sentiment = "sentiment"
     }

@@ -202,6 +202,8 @@ class gMapsViewController: UIViewController, UITableViewDelegate {
         // Package data
         var mdata = [Constants.PlaceFields.PID: placeID! as String]
         
+        let ndata = mdata
+        
 //        mdata[Constants.PlaceFields.PID] = placeID
         mdata[Constants.PlaceFields.UID] = UID
         mdata[Constants.PlaceFields.timestamp] = timestamp
@@ -214,7 +216,21 @@ class gMapsViewController: UIViewController, UITableViewDelegate {
         mdata[Constants.PlaceFields.status] = status
         
         mainVC.ref.child("places").childByAutoId().setValue(mdata)
-    
+        
+        
+        // MARK - NEW DATA STRUCTURE
+        // TODO - Check if place already exists
+        mainVC.ref.child("placeIDs").childByAutoId().setValue(ndata)
+        
+        var bdata = [Constants.blurbFields.PID: placeID! as String]
+        bdata[Constants.blurbFields.UID] = UID
+        bdata[Constants.blurbFields.timestamp] = timestamp
+        bdata[Constants.blurbFields.privacy] = "private"
+        bdata[Constants.blurbFields.comment] = blurb
+        bdata[Constants.blurbFields.sentiment] = status
+        
+        mainVC.refUser.child("blurbs").childByAutoId().setValue(bdata)
+        
     }
     
     

@@ -24,11 +24,13 @@ class mainVC: UIViewController {
     
     static var ref: DatabaseReference!
     static var refUser: DatabaseReference!
+    
     static var places: [DataSnapshot]! = []
     static var privatePlaces: [DataSnapshot]! = []
     
     static var hapPlaces = [String: HapPlace]()
-    static var hapBlurbs = [String: HapBlurb]()
+//    static var hapBlurbs = [String: HapBlurb]()
+    static var hapPlacesArray = [HapPlace]()
     
     var placesClient: GMSPlacesClient!
     
@@ -116,50 +118,10 @@ class mainVC: UIViewController {
             let newBlurb = HapBlurb(snapshot: snapshot)
             print("received a new blurb: \(newBlurb.blurbID)")
             
-            mainVC.hapBlurbs[newBlurb.blurbID] = newBlurb
-            print("Number of blurbs is now: \(mainVC.hapBlurbs.count)")
-            self.addPlaceIfNew(placeID: newBlurb.placeID)
+            self.handleIncomingBlurb(blurb: newBlurb)
         }
-    
-            
-            
-            
-            
-            
-        
-        
-        _refHandle = mainVC.ref.child("places").observe(.childAdded) {(snapshot: DataSnapshot) in
-            mainVC.places.append(snapshot)
-            
-            let place = snapshot.value as! [String:String]
-            
-            if let placeID = place[Constants.PlaceFields.PID] {
-                print("starting up placefinding with \(placeID)")
-                self.addPlaceIfNew(placeID: placeID)
-            }
-            
-            if place[Constants.PlaceFields.UID] == self.user?.uid {
-                print("appending to private places")
-                mainVC.privatePlaces.append(snapshot)
-                print("privatePlaces size: \(mainVC.privatePlaces.count)")
-                
-            }
-            
-            gMapsViewController().sortArraysByDistance()
-            gMapsViewController().embeddedVC?.tableView.reloadData()
-            
-            
-//            placesTableViewController().tableView.insertRows(at: [IndexPath(row: mainVC.places.count - 1, section: 0)], with: .automatic)
-            
-//            gMapsViewController().addMarker(snapshot: snapshot)
-//            print(mainVC.places)
-            
-//            placesTableViewController().tableView.reloadData()
-            
-        }
-        
-        
     }
+    
     
     func clearLocalData() {
         // Remove any data that should be gone if no user is logged in.
@@ -169,65 +131,5 @@ class mainVC: UIViewController {
         
         
     }
-    
-    
-    func addPlaceIfNew(placeID: String) {
-        
-        // TODO: Confirm that this is only loading places if the array is empty there. 
-        if mainVC.hapPlaces[placeID] != nil {
-            print("\(mainVC.hapPlaces[placeID]?.name) is already in Hap Place Array")
-        } else {
-            self.lookUpPID(placeID: placeID)
-        }
-        
-        // TODO: Reload tableview?
-        return
-        
-    }
-    
-    
-    
-    func lookUpPID(placeID: String) {
-        
-        print(placeID)
-        
-        self.placesClient.lookUpPlaceID(placeID, callback: { (place, error) in
-            if let error = error {
-                print("lookup place id query error: \(error.localizedDescription)")
-                return
-            }
-            
-            guard let place = place else {
-                print("No place details for \(placeID)")
-                return
-            }
-            
-            self.initializeHapPlace(place: place)
-        })
-    }
-    
-    
-    func initializeHapPlace(place: GMSPlace) {
-        
-        let happyPlace = HapPlace(gPID: place)
-        
-        print(".........")
-        print(happyPlace.name)
-        print(happyPlace.placeID)
-        print(happyPlace.address)
-        print(happyPlace.city)
-        print(happyPlace.blurbs)
-        print(happyPlace.coordinates)
-        print(happyPlace.dateDownloaded)
-        print("!!!!!!!!!")
-        
-        mainVC.hapPlaces[happyPlace.placeID] = happyPlace
-        // MARK: TODO - Temporarily store this locally
-        print(mainVC.hapPlaces.count)
-        
-    }
-    
-    
-    
 
 }

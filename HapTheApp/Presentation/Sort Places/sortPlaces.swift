@@ -18,16 +18,11 @@ extension gMapsViewController {
         print("sorting arrays...." )
         mainVC.places.sort(by: { helpers.calculateDistance(dataSnapshot: $0) < helpers.calculateDistance(dataSnapshot: $1) })
         mainVC.privatePlaces.sort(by: { helpers.calculateDistance(dataSnapshot: $0) < helpers.calculateDistance(dataSnapshot: $1) })
-        
-        
+        mainVC.hapPlacesArray.sort(by: {helpers.calculateDistance(coordinate: $0.coordinates!) < helpers.calculateDistance(coordinate: $1.coordinates!) } )
+
     }
     
-    
-    
-    
-    
-    
-    
+
 }
 
 

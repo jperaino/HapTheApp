@@ -30,6 +30,23 @@ class helpers {
 
         return distanceInMiles
     }
+    
+    static func calculateDistance(coordinate: CLLocationCoordinate2D) -> Double {
+        
+        let placeLat = coordinate.latitude
+        let placeLong = coordinate.longitude
+        let placeCoordinates = CLLocation(latitude: Double(placeLat), longitude: Double(placeLong))
+        
+        
+        let distanceInMeters = gMapsViewController.currentLocation!.distance(from: placeCoordinates as CLLocation)
+        let distanceInMiles = distanceInMeters*0.000621371
+        
+        return distanceInMiles
+    }
+    
+    
+    
+    
 }
 
 

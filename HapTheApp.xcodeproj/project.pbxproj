@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		427523EBD5DAD53B38E67A07 /* Pods_HapTheApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B94D96B6330703215CDD6EF5 /* Pods_HapTheApp.framework */; };
 		53028A062033E88800702724 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53028A052033E88800702724 /* StoreKit.framework */; };
+		53428DD620388ABF002FB7C4 /* blurbHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53428DD520388ABF002FB7C4 /* blurbHandlers.swift */; };
 		539376042035F33500054ED7 /* sortPlaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539376032035F33500054ED7 /* sortPlaces.swift */; };
 		5393760920372FC600054ED7 /* HapUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5393760820372FC600054ED7 /* HapUser.swift */; };
 		5393760B2037328300054ED7 /* HapPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5393760A2037328300054ED7 /* HapPlace.swift */; };
@@ -45,6 +46,7 @@
 		1227787007F5F6F7E72687F0 /* Pods-HapTheApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HapTheApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-HapTheApp/Pods-HapTheApp.release.xcconfig"; sourceTree = "<group>"; };
 		53028A052033E88800702724 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		53028A072033F31500702724 /* HapTheApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HapTheApp.entitlements; sourceTree = "<group>"; };
+		53428DD520388ABF002FB7C4 /* blurbHandlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = blurbHandlers.swift; sourceTree = "<group>"; };
 		539376032035F33500054ED7 /* sortPlaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sortPlaces.swift; sourceTree = "<group>"; };
 		5393760820372FC600054ED7 /* HapUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapUser.swift; sourceTree = "<group>"; };
 		5393760A2037328300054ED7 /* HapPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapPlace.swift; sourceTree = "<group>"; };
@@ -113,6 +115,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		53428DD420388AA1002FB7C4 /* Blurb Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				53428DD520388ABF002FB7C4 /* blurbHandlers.swift */,
+			);
+			path = "Blurb Handlers";
+			sourceTree = "<group>";
+		};
 		539376052035F33F00054ED7 /* Sort Places */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +157,7 @@
 		53B0F245202CB764003816E1 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				53428DD420388AA1002FB7C4 /* Blurb Handlers */,
 				53BFA19020268EF5000C416F /* AppDelegate.swift */,
 				539C5B3E202FC396009A2394 /* mainVC.swift */,
 				53BFA19420268EF5000C416F /* Main.storyboard */,
@@ -438,6 +449,7 @@
 				53ECD1C7202925F9006BEDF0 /* Helpers.swift in Sources */,
 				53F2461B2030FDFF00044AAD /* googleMapsAddMarkers.swift in Sources */,
 				5393760B2037328300054ED7 /* HapPlace.swift in Sources */,
+				53428DD620388ABF002FB7C4 /* blurbHandlers.swift in Sources */,
 				53B0F25A202CC407003816E1 /* sideTableViewCell.swift in Sources */,
 				539376042035F33500054ED7 /* sortPlaces.swift in Sources */,
 				53F246112030AF5600044AAD /* gMapsViewController.swift in Sources */,
